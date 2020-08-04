@@ -10,15 +10,15 @@
 <head>
     <title>Title</title>
 
-REGUSER
+    REGUSER
 </head>
 <body>
 
 <form action="/user/reg" method="post">
-    <input type="text" name="login" placeholder="Login">
-    <input type="email" name="email" placeholder="Email">
-    <input type="password" name="password" placeholder="Password">
-     <button>Submit</button>
+    <input type="text" name="firstName" placeholder="First Name">
+    <input type="text" name="lastName" placeholder="Last Name">
+    <input type="text" name="firstName" placeholder="First Name">
+    <button>Submit</button>
 </form>
 
 
