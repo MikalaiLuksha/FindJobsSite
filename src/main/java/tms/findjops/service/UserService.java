@@ -2,7 +2,7 @@ package tms.findjops.service;
 
 import lombok.Data;
 import org.springframework.stereotype.Service;
-import tms.findjops.model.UserFJ;
+import tms.findjops.model.Applicant;
 import tms.findjops.repository.UserRepository;
 
 @Service
@@ -11,7 +11,7 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    public void creatUser (UserFJ user){
+    public void creatUser (Applicant user){
         userRepository.save(user);
     }
 }
