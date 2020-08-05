@@ -13,13 +13,14 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class UserFJ {
+public class Applicant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String login;
+    private String firstName;
+    private String lastName;
     private String password;
     private String email;
 }
