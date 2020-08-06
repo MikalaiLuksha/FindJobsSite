@@ -21,27 +21,43 @@ REGUSER
 <li class="nav-item" role="presentation">
     <a class="nav-link" id="profile-tab" data-toggle="tab" href="#employer" role="tab" aria-controls="Employer" aria-selected="false">Registration employer</a>
 </li>
-
 </ul>
+
 <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="applicant" role="tabpanel" aria-labelledby="home-tab">
-        <form action="/user/reg" method="post">
+        <form action="/user/reg/applicant" method="post">
+            <div class="form-group">
+                <label for="applicant1" class="offset-sm-2">First Name</label>
+                <input type="text" class="form-control col-5 offset-sm-2" id="applicant1" name="firstName">
+            </div>
+            <div class="form-group">
+                <label for="applicant2" class="offset-sm-2">Last Name</label>
+                <input type="text" class="form-control col-5 offset-sm-2" id="applicant2" name="lastName">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1" class="offset-sm-2">Email address</label>
+                <input type="email" name="email" class="form-control col-5 offset-sm-2" id="exampleInputEmail1" aria-describedby="emailHelp">
+             </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1" class="offset-sm-2">Password</label>
+                <input type="password" name="password" class="form-control col-5 offset-sm-2" id="exampleInputPassword1">
+            </div>
+               <button type="submit" class="btn btn-primary offset-sm-2">Submit</button>
+        </form>
+        </div>
+    <div class="tab-pane fade" id="employer" role="tabpanel" aria-labelledby="profile-tab">
+        <form action="/user/reg/employer" method="post">
             <input type="text" name="firstName" placeholder="First Name">
             <input type="text" name="lastName" placeholder="Last Name">
             <input type="email" name="email" placeholder="Email">
+            <input type="text" name="phone" placeholder="Phone">
+            <input type="text" name="company" placeholder="Company">
             <input type="password" name="password" placeholder="Password">
             <button>Submit</button>
         </form>
-            </div>
-    <div class="tab-pane fade" id="employer" role="tabpanel" aria-labelledby="profile-tab">
-        <form action="/user/reg" method="post">
-            <input type="text" name="firstName" placeholder="First Name">
-            <input type="text" name="lastName" placeholder="Last Name">
-            <input type="email" name="email" placeholder="Email">
-            <input type="password" name="password" placeholder="Password">
-            <button>Submit</button>
     </div>
 </div>
+
 
 
 
