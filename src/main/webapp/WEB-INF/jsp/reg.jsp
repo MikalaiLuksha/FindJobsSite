@@ -8,13 +8,10 @@
 <html>
 <head>
     <title>Title</title>
-
-REGUSER
 </head>
 <body>
-
-
-<ul class="nav nav-tabs" id="myTab" role="tablist">
+<h4 class="mt-5"></h4>
+<ul class="nav nav-tabs col-4 offset-sm-2" id="myTab" role="tablist">
 <li class="nav-item" role="presentation">
     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#applicant" role="tab" aria-controls="Applicant" aria-selected="true">Registration applicant</a>
 </li>
@@ -26,39 +23,65 @@ REGUSER
 <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="applicant" role="tabpanel" aria-labelledby="home-tab">
         <form action="/user/reg/applicant" method="post">
-            <div class="form-group">
-                <label for="applicant1" class="offset-sm-2">First Name</label>
-                <input type="text" class="form-control col-5 offset-sm-2" id="applicant1" name="firstName">
+            <h6 class="mt-4"></h6>
+            <div class="form-group text-light">
+                <label for="applicant1" class="offset-sm-2">First Name </label>
+                <input type="text" class="form-control col-4 offset-sm-2" id="applicant1" name="firstName">
             </div>
-            <div class="form-group">
+            <div class="form-group text-light">
                 <label for="applicant2" class="offset-sm-2">Last Name</label>
-                <input type="text" class="form-control col-5 offset-sm-2" id="applicant2" name="lastName">
+                <input type="text" class="form-control col-4 offset-sm-2" id="applicant2" name="lastName">
             </div>
-            <div class="form-group">
+            <div class="form-group text-light">
                 <label for="exampleInputEmail1" class="offset-sm-2">Email address</label>
-                <input type="email" name="email" class="form-control col-5 offset-sm-2" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <input type="email" name="email" class="form-control col-4 offset-sm-2" id="exampleInputEmail1" aria-describedby="emailHelp">
              </div>
-            <div class="form-group">
+            <div class="form-group text-light">
                 <label for="exampleInputPassword1" class="offset-sm-2">Password</label>
-                <input type="password" name="password" class="form-control col-5 offset-sm-2" id="exampleInputPassword1">
+                <input type="password" name="password" class="form-control col-4 offset-sm-2" id="exampleInputPassword1">
             </div>
                <button type="submit" class="btn btn-primary offset-sm-2">Submit</button>
         </form>
         </div>
     <div class="tab-pane fade" id="employer" role="tabpanel" aria-labelledby="profile-tab">
         <form action="/user/reg/employer" method="post">
-            <input type="text" name="firstName" placeholder="First Name">
-            <input type="text" name="lastName" placeholder="Last Name">
-            <input type="email" name="email" placeholder="Email">
-            <input type="text" name="phone" placeholder="Phone">
-            <input type="text" name="company" placeholder="Company">
-            <input type="password" name="password" placeholder="Password">
-            <button>Submit</button>
+
+            <h6 class="mt-4"></h6>
+            <div class="form-group text-light">
+                <label for="employer1" class="offset-sm-2">First Name </label>
+                <input type="text" class="form-control col-4 offset-sm-2" id="employer1" name="firstName">
+            </div>
+            <div class="form-group text-light">
+                <label for="employer2" class="offset-sm-2">Last Name</label>
+                <input type="text" class="form-control col-4 offset-sm-2" id="employer2" name="lastName">
+            </div>
+            <div class="form-group text-light">
+                <label for="exampleInputEmail2" class="offset-sm-2">Email address</label>
+                <input type="email" name="email" class="form-control col-4 offset-sm-2" id="exampleInputEmail2" aria-describedby="emailHelp">
+            </div>
+            <div class="form-group text-light">
+                <label for="employer3" class="offset-sm-2">Phone</label>
+                <input type="text" class="form-control col-4 offset-sm-2" id="employer3" name="phone">
+            </div>
+            <div class="form-group text-light">
+                <label for="employer4" class="offset-sm-2">Company</label>
+                <input type="text" class="form-control col-4 offset-sm-2" id="employer4" name="company">
+            </div>
+            <div class="form-group text-light">
+                <label for="exampleInputPassword2" class="offset-sm-2">Password</label>
+                <input type="password" name="password" class="form-control col-4 offset-sm-2" id="exampleInputPassword2">
+            </div>
+            <button type="submit" class="btn btn-primary offset-sm-2">Submit</button>
         </form>
     </div>
 </div>
 
 
+<style>
+    body {
+        background: url("https://i1.wallbox.ru/wallpapers/main/201134/2560h1600-tekstura-oboi-e710001.jpg")
+    }
+</style>
 
 
 </body>
