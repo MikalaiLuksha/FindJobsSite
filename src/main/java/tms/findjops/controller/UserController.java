@@ -24,15 +24,19 @@ public class UserController {
     @RequestMapping(value = "/reg/applicant", method = RequestMethod.POST)
     public String regApplP(Applicant applicant){
         applicantService.createApplicant(applicant);
-        return ("/addPersonalInformation");
+        return ("/");
 
     }
 
     @RequestMapping(value = "/reg/employer", method = RequestMethod.POST)
     public String regEmpP(Employer employer){
         employerService.createEmployer(employer);
-        return ("/addPersonalInformation");
+        return ("/");
+    }
 
+    @RequestMapping(value = "/auth", method = RequestMethod.GET)
+    public String authUser(){
+        return "auth";
     }
 
 

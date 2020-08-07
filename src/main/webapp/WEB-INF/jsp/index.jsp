@@ -11,7 +11,7 @@
     <title>Title</title>
 
     <a href="/user/reg">Registration |</a>
-    <a href="/auth">Authorisation |</a>
+    <a href="/user/auth">Authorisation |</a>
 </head>
 <body>
 

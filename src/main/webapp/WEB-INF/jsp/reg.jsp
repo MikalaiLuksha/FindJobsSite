@@ -8,6 +8,7 @@
 <html>
 <head>
     <title>Title</title>
+
 </head>
 <body>
 <h4 class="mt-5"></h4>
@@ -41,8 +42,8 @@
                 <input type="password" name="password" class="form-control col-4 offset-sm-2" id="exampleInputPassword1">
             </div>
                <button type="submit" class="btn btn-primary offset-sm-2">Submit</button>
-        </form>
-        </div>
+                  </form>
+          </div>
     <div class="tab-pane fade" id="employer" role="tabpanel" aria-labelledby="profile-tab">
         <form action="/user/reg/employer" method="post">
 
@@ -75,6 +76,8 @@
         </form>
     </div>
 </div>
+
+ <a href="/" type="submit" class="btn btn-primary offset-sm-4 col-2">Return</a>
 
 
 <style>
