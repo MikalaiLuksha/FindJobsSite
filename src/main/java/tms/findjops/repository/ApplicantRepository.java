@@ -5,4 +5,5 @@ import tms.findjops.model.Applicant;
 
 public interface ApplicantRepository extends JpaRepository<Applicant, Long> {
 
+    Applicant findByEmail(String email);
 }

@@ -14,4 +14,22 @@ public class EmployerService {
     public void createEmployer(Employer employer){
         employerRepository.save(employer);
     }
+
+    public Employer checkAuth (String email, String password){
+        Employer byEmail = employerRepository.findByEmail(email);
+        if (byEmail != null) {
+            if (byEmail.getPassword().equals(password)) {
+                return byEmail;
+            }
+        }
+        return null;
+    }
+
+    public boolean checkReg(String email){
+        Employer employer = employerRepository.findByEmail(email);
+        if (employer == null){
+            return true;
+        }
+        return false;
+    }
 }

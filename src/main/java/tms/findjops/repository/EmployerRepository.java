@@ -4,4 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import tms.findjops.model.Employer;
 
 public interface EmployerRepository extends JpaRepository<Employer, Long> {
+
+    Employer findByEmail (String email);
 }
