@@ -31,5 +31,9 @@ public class ApplicantService {
         Applicant applicant = applicantRepository.findByEmail(email);
         return applicant == null;
     }
+    
+    public Applicant getApplicant(){
+        return new Applicant();
+    }
 }
 

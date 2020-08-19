@@ -10,20 +10,46 @@
     <title>Title</title>
 </head>
 <body>
-<#if checkReg=="null">
-<a href="/user/reg">Registration |</a>
-<a href="/user/auth">Authorisation |</a>
-<#elseif checkRegA??>
-        <a href="/user/auth">Appl</a>
-        <a href="/user/logout">logout</a>
-<#elseif checkRegE??>
-    <a href="/user/auth">  Emp</a>
-    <a href="/user/logout">logout</a>
-</#if>
-
+<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+    <ul class="nav">
+        <#if !checkReg??>
+        <li class="nav-item">
+            <a class="nav-link" href="/user/reg">Registration</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/user/auth">Authorisation</a>
+        </li>
+        <#elseif checkRegA??>
+        <li class="nav-item">
+            <a class="nav-link" href="/user/applicant/account">Personal Information</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Create resume</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">You resume</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Response</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/user/logout">Logout</a>
+        </li>
+        <#elseif checkRegE??>
+            <a href="/user/employer/account">Personal Account</a>
+            <a href="/user/logout">logout</a>
+        </#if>
+    </ul>
+</nav>
 <#if message??>
     <h2>${message}</h2>
 </#if>
+
+<style>
+    body {
+        background: url("https://krot.info/uploads/posts/2020-01/1579349378_6-14.jpg")
+    }
+</style>
 
 </body>
 </html>

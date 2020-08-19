@@ -22,7 +22,7 @@
 
 <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="applicant" role="tabpanel" aria-labelledby="home-tab">
-        <form action="/user/reg/applicant" method="post">
+        <form action="/user/applicant/reg" method="post">
             <h6 class="mt-4"></h6>
             <div class="form-group text-light">
                 <label for="applicant1" class="offset-sm-2">First Name </label>
@@ -44,7 +44,7 @@
         </form>
     </div>
     <div class="tab-pane fade" id="employer" role="tabpanel" aria-labelledby="profile-tab">
-        <form action="/user/reg/employer" method="post">
+        <form action="/user/employer/reg" method="post">
 
             <h6 class="mt-4"></h6>
             <div class="form-group text-light">
