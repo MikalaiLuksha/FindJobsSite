@@ -6,11 +6,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import tms.findjops.model.Applicant;
 import tms.findjops.model.Employer;
+import tms.findjops.model.Gender;
+import tms.findjops.model.Nationality;
 import tms.findjops.service.ApplicantService;
 import tms.findjops.service.EmployerService;
 import tms.findjops.service.UserDTO;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Data
 @Controller
@@ -31,7 +34,7 @@ public class UserController {
         if (applicantService.checkReg(applicant.getEmail())||employerService.checkReg(applicant.getEmail())){
         applicantService.createApplicant(applicant);
         httpSession.setAttribute("message", "Completed applicant registration");
-            return ("redirect:/");
+            return ("redirect:/user/applicant/addProfile");
         }
         else{model.addAttribute("messageError", "Email already used");
             return "/reg/applicant";
@@ -85,7 +88,13 @@ public class UserController {
         return "/applicant/account";
     }
 
-
+    @RequestMapping(value = "/applicant/addProfile", method = RequestMethod.GET)
+    public String addProfileG (Model model){
+        List<Nationality> allNationality = applicantService.getAllNationality();
+        model.addAttribute("genders", Gender.values());
+        model.addAttribute("nationality", allNationality);
+        return "/applicant/addprofile";
+    }
 
 
 

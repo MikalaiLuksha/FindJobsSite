@@ -27,4 +27,7 @@ public class Applicant {
 
     @Column(name = "email")
     private String email;
+
+    @OneToOne
+    private Nationality nationality;
 }

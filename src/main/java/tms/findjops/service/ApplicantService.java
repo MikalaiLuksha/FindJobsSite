@@ -4,7 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Service;
 import tms.findjops.model.Applicant;
+import tms.findjops.model.Nationality;
 import tms.findjops.repository.ApplicantRepository;
+import tms.findjops.repository.NationalityRepository;
+
+import java.util.List;
 
 @Service
 @Data
@@ -12,6 +16,7 @@ import tms.findjops.repository.ApplicantRepository;
 public class ApplicantService {
 
     private final ApplicantRepository applicantRepository;
+    private final NationalityRepository nationalityRepository;
 
     public void createApplicant(Applicant applicant) {
         applicantRepository.save(applicant);
@@ -34,6 +39,10 @@ public class ApplicantService {
     
     public Applicant getApplicant(){
         return new Applicant();
+    }
+
+    public List<Nationality> getAllNationality(){
+        return nationalityRepository.findAll();
     }
 }
 
