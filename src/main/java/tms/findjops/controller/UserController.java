@@ -32,14 +32,34 @@ public class UserController {
     @RequestMapping(value = "/applicant/reg", method = RequestMethod.POST)
     public String regApplP(Applicant applicant, HttpSession httpSession, Model model){
         if (applicantService.checkReg(applicant.getEmail())||employerService.checkReg(applicant.getEmail())){
-        applicantService.createApplicant(applicant);
-        httpSession.setAttribute("message", "Completed applicant registration");
+        httpSession.setAttribute("applicantPre", applicant);
             return ("redirect:/user/applicant/addProfile");
         }
         else{model.addAttribute("messageError", "Email already used");
             return "/reg/applicant";
         }
     }
+
+    @RequestMapping(value = "/applicant/addProfile", method = RequestMethod.GET)
+    public String addProfileG (Model model){
+        List<Nationality> allNationality = applicantService.getAllNationality();
+        model.addAttribute("genders", Gender.values());
+        model.addAttribute("nationality", allNationality);
+        return "/applicant/addprofile";
+    }
+
+    @RequestMapping(value = "/applicant/addProfile", method = RequestMethod.POST)
+    public String addProfileP (Applicant applicant, HttpSession httpSession, Model model){
+        Applicant applicantPre = (Applicant) httpSession.getAttribute("applicantPre");
+        applicantPre.setBirthday(applicant.getBirthday());
+        applicantPre.setGender(applicant.getGender());
+        applicantPre.setNationality(applicant.getNationality());
+        applicantPre.setTelephone(applicant.getTelephone());
+        applicantService.createApplicant(applicantPre);
+        httpSession.setAttribute("message", "Completed applicant registration");
+        return "/";
+    }
+
 
     @RequestMapping(value = "/employer/reg", method = RequestMethod.POST)
     public String regEmpP(Employer employer, HttpSession httpSession){
@@ -88,13 +108,6 @@ public class UserController {
         return "/applicant/account";
     }
 
-    @RequestMapping(value = "/applicant/addProfile", method = RequestMethod.GET)
-    public String addProfileG (Model model){
-        List<Nationality> allNationality = applicantService.getAllNationality();
-        model.addAttribute("genders", Gender.values());
-        model.addAttribute("nationality", allNationality);
-        return "/applicant/addprofile";
-    }
 
 
 
