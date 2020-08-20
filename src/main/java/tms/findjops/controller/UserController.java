@@ -26,7 +26,7 @@ public class UserController {
         return "reg";
     }
 
-    @RequestMapping(value = "/reg/applicant", method = RequestMethod.POST)
+    @RequestMapping(value = "/applicant/reg", method = RequestMethod.POST)
     public String regApplP(Applicant applicant, HttpSession httpSession, Model model){
         if (applicantService.checkReg(applicant.getEmail())||employerService.checkReg(applicant.getEmail())){
         applicantService.createApplicant(applicant);
@@ -38,7 +38,7 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value = "/reg/employer", method = RequestMethod.POST)
+    @RequestMapping(value = "/employer/reg", method = RequestMethod.POST)
     public String regEmpP(Employer employer, HttpSession httpSession){
         if (applicantService.checkReg(employer.getEmail())||employerService.checkReg(employer.getEmail())){
         employerService.createEmployer(employer);
@@ -63,14 +63,14 @@ public class UserController {
             httpSession.setAttribute("currentApplicant", applicant);
             httpSession.setAttribute("message", "Completed applicant auth");
             httpSession.setAttribute("checkRegA", true);
-            httpSession.setAttribute("checkReg", true);
+            httpSession.setAttribute("checkReg", false);
             return ("redirect:/");
         }
         if (employer != null){
             httpSession.setAttribute("currentEmployer", employer);
             httpSession.setAttribute("message", "Completed employer auth");
             httpSession.setAttribute("checkRegE", true);
-            httpSession.setAttribute("checkReg", true);
+            httpSession.setAttribute("checkReg", false);
             return ("redirect:/");
         }
         if (applicant == null && employer == null){
@@ -80,6 +80,17 @@ public class UserController {
         return "/";
     }
 
+    @RequestMapping(value = "/applicant/account", method = RequestMethod.GET)
+    public String accountG (){
+        return "/applicant/account";
+    }
+
+
+
+
+
+
+
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logoutG(HttpSession httpSession){
         httpSession.removeAttribute("currentApplicant");
@@ -88,7 +99,7 @@ public class UserController {
         httpSession.removeAttribute("checkRegE");
         httpSession.removeAttribute("checkReg");
         httpSession.removeAttribute("checkRegA");
-        return "/";
+        return ("redirect:/");
     }
 
 
