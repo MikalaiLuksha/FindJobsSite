@@ -12,7 +12,7 @@
         <h6 class="mt-4"></h6>
         <div class="form-group text-light">
             <label for="applicant1" class="offset-sm-2"> Birthday </label>
-            <input type="time" class="form-control col-2 offset-sm-2" id="applicant1" name="birthday">
+            <input type="date" class="form-control col-2 offset-sm-2" id="applicant1" name="birthday">
         </div>
         <div class="form-group text-light">
             <label for="applicant2" class="offset-sm-2"> Gender </label>
@@ -26,14 +26,14 @@
             <label for="exampleInputEmail1" class="offset-sm-2"> Nationality </label>
             <select class="form-control col-2 offset-sm-2" name="nationality">
                 <#list nationality as nati>
-                    <option value="${nati}"> ${nati.name}</option>
+                    <option value="${nati.id}"> ${nati.name}</option>
                 </#list>
             </select>
         </div>
 </div>
 <div class="form-group text-light">
-    <label for="phone" class="offset-sm-2">Telephone</label>
-    <input type="text" name="phone" id="phone" class="form-control bfh-phone col-2 offset-sm-2"
+    <label for="telephone" class="offset-sm-2">Telephone</label>
+    <input type="text" name="telephone" id="phone" class="form-control bfh-phone col-2 offset-sm-2"
            data-format="+375 (dd) ddd-dddd" value="" pattern="(\+[\d\ \(\)\-]{16})">
 </div>
 <button type="submit" class="btn btn-primary offset-sm-2">Submit</button>

@@ -57,7 +57,7 @@ public class UserController {
         applicantPre.setTelephone(applicant.getTelephone());
         applicantService.createApplicant(applicantPre);
         httpSession.setAttribute("message", "Completed applicant registration");
-        return "/";
+        return "index";
     }
 
 

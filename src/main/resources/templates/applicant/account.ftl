@@ -21,12 +21,35 @@
 </head>
 <body>
 
-<dl class="row">
-    <dt class="col-sm-2 offset-sm-1"> First Name</dt>
-    <dd class="col-sm-8">${currentApplicant.firstName}</dd>
-    <dt class="col-sm-2 offset-sm-1"> Last Name</dt>
-    <dd class="col-sm-8">${currentApplicant.lastName}</dd>
-</dl>
+
+    <div class="card mb-10 offset-sm-1 mt-4" style="max-width: 540px; background-color: #e6e4f3">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="https://c7.hotpng.com/preview/895/85/169/computer-icons-businessperson-clip-art-business-woman.jpg" class="card-img" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title offset-sm-1">Profile</h5>
+                        <dl class="row">
+                        <dt class="col-sm-4 offset-sm-1"> First Name</dt>
+                        <dd class="col-sm-6">${currentApplicant.firstName}</dd>
+                        <dt class="col-sm-4 offset-sm-1"> Last Name</dt>
+                        <dd class="col-sm-6">${currentApplicant.lastName}</dd>
+                        <dt class="col-sm-4 offset-sm-1"> Gender </dt>
+                        <dd class="col-sm-6">${currentApplicant.gender}</dd>
+                        <dt class="col-sm-4 offset-sm-1"> Telephone </dt>
+                        <dd class="col-sm-6">${currentApplicant.telephone}</dd>
+                        <dt class="col-sm-4 offset-sm-1"> Birthday </dt>
+                        <dd class="col-sm-6">${currentApplicant.birthday.time?string["yyyy-MM-dd"]}</dd>
+                        <dt class="col-sm-4 offset-sm-1"> Nationality </dt>
+                        <dd class="col-sm-6">${currentApplicant.nationality.name}</dd>
+                    </dl>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 <style>
     body {
