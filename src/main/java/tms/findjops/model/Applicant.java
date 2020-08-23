@@ -7,7 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -19,10 +19,10 @@ public class Applicant {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "first_name")
+    @Column(name = "firstname")
     private String firstName;
 
-    @Column(name = "last_name")
+    @Column(name = "lastname")
     private String lastName;
 
     @Column(name = "password")
@@ -31,8 +31,8 @@ public class Applicant {
     @Column(name = "email")
     private String email;
 
-    @OneToOne
-    private Nationality nationality;
+    @ManyToMany
+    private List<Nationality>nationality;
 
     @Column(name = "birthday")
     @DateTimeFormat(pattern = "yyyy-MM-dd")

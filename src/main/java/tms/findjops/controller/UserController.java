@@ -104,9 +104,21 @@ public class UserController {
     }
 
     @RequestMapping(value = "/applicant/account", method = RequestMethod.GET)
-    public String accountG (){
+    public String accountG (HttpSession httpSession, Model model){
+        Applicant currentApplicant1 = (Applicant) httpSession.getAttribute("currentApplicant");
+        List<Nationality> nationality = currentApplicant1.getNationality();
+        model.addAttribute("natiList", nationality);
         return "/applicant/account";
     }
+
+    @RequestMapping(value = "/applicant/addResume", method = RequestMethod.GET)
+    public String addResumeG (HttpSession httpSession, Model model){
+        Applicant currentApplicant1 = (Applicant) httpSession.getAttribute("currentApplicant");
+        List<Nationality> nationality = currentApplicant1.getNationality();
+        model.addAttribute("natiList", nationality);
+        return "/applicant/addresume";
+    }
+
 
 
 

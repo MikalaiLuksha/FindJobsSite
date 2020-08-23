@@ -22,16 +22,20 @@
                 </#list>
             </select>
         </div>
-        <div class="form-group text-light">
-            <label for="exampleInputEmail1" class="offset-sm-2"> Nationality </label>
-            <select class="form-control col-2 offset-sm-2" name="nationality">
+
+        <div class="dropdown mt-2">
+            <label for="appl" class="offset-sm-2 text-light"> Nationality </label>
+            <br><button class="btn btn-light dropdown-toggle offset-sm-2" type="button" id="appl" data-toggle="dropdown">
+                Selected <span class="caret"></span>
+            </button><br>
+            <ul class="dropdown-menu">
                 <#list nationality as nati>
-                    <option value="${nati.id}"> ${nati.name}</option>
+                <li class="dropdown-input offset-sm-1"><label><input type="checkbox" name="nationality" value="${nati.id}"> ${nati.name} </label></li>
                 </#list>
-            </select>
+            </ul>
         </div>
-</div>
-<div class="form-group text-light">
+
+<div class="form-group text-light mt-3">
     <label for="telephone" class="offset-sm-2">Telephone</label>
     <input type="text" name="telephone" id="phone" class="form-control bfh-phone col-2 offset-sm-2"
            data-format="+375 (dd) ddd-dddd" value="" pattern="(\+[\d\ \(\)\-]{16})">
@@ -55,6 +59,12 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
+<script>
+    $('.dropdown-input').click(function(event){
+        event.stopPropagation();
+    });
+</script>
+
 </body>
 </html>
 

@@ -42,7 +42,12 @@
                         <dt class="col-sm-4 offset-sm-1"> Birthday </dt>
                         <dd class="col-sm-6">${currentApplicant.birthday.time?string["yyyy-MM-dd"]}</dd>
                         <dt class="col-sm-4 offset-sm-1"> Nationality </dt>
-                        <dd class="col-sm-6">${currentApplicant.nationality.name}</dd>
+                        <dd class="col-sm-6">
+                            <#list natiList as nati>
+                            <li>${nati.name}
+                            </#list>
+                        </dd>
+
                     </dl>
 
                 </div>
