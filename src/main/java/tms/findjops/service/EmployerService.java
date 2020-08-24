@@ -3,6 +3,7 @@ package tms.findjops.service;
 import lombok.Data;
 import org.springframework.stereotype.Service;
 import tms.findjops.model.Employer;
+import tms.findjops.model.Language;
 import tms.findjops.repository.EmployerRepository;
 
 @Service
@@ -31,5 +32,9 @@ public class EmployerService {
             return true;
         }
         return false;
+    }
+
+    public Language getLanguage (){
+        return new Language();
     }
 }

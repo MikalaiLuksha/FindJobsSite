@@ -31,7 +31,7 @@ public class Applicant {
     @Column(name = "email")
     private String email;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Nationality>nationality;
 
     @Column(name = "birthday")

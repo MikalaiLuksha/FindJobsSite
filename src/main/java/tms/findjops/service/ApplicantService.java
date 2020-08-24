@@ -4,9 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Service;
 import tms.findjops.model.Applicant;
+import tms.findjops.model.Language;
 import tms.findjops.model.Nationality;
+import tms.findjops.model.Profession;
 import tms.findjops.repository.ApplicantRepository;
+import tms.findjops.repository.LanguageRepository;
 import tms.findjops.repository.NationalityRepository;
+import tms.findjops.repository.ProfessionRepository;
 
 import java.util.List;
 
@@ -17,6 +21,8 @@ public class ApplicantService {
 
     private final ApplicantRepository applicantRepository;
     private final NationalityRepository nationalityRepository;
+    private final LanguageRepository languageRepository;
+    private final ProfessionRepository professionRepository;
 
     public void createApplicant(Applicant applicant) {
         applicantRepository.save(applicant);
@@ -44,5 +50,11 @@ public class ApplicantService {
     public List<Nationality> getAllNationality(){
         return nationalityRepository.findAll();
     }
+
+    public List <Language> getAllLanguage (){
+        return languageRepository.findAll();
+    }
+
+    public List<Profession> getAllProfession(){return professionRepository.findAll();}
 }
 

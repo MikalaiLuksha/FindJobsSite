@@ -42,7 +42,7 @@
                     <dd class="col-sm-6">${currentApplicant.birthday.time?string["yyyy-MM-dd"]}</dd>
                     <dt class="col-sm-4 offset-sm-1"> Nationality </dt>
                     <dd class="col-sm-6">
-                        <#list natiList as nati>
+                        <#list currentApplicant.nationality as nati>
                         <li>${nati.name}
                             </#list>
                     </dd>
@@ -63,29 +63,37 @@
                 </#list>
             </select>
         </div>
+        <div class="form-group text-light">
+            <label for="employer2" class="offset-sm-2">Salary</label>
+            <input type="text" class="form-control col-4 offset-sm-2" id="employer2" name="salary">
+        </div>
 
         <div class="form-group text-light">
-            <label for="applicant2" class="offset-sm-2"> Gender </label>
-            <select class="form-control col-2 offset-sm-2" name="gender">
-                <#list genders as gender>
-                    <option value="${gender}"> ${gender}</option>
-                </#list>
-            </select>
+            <label for="employer3" class="offset-sm-2">About myself</label>
+            <textarea class="form-control col-4 offset-sm-2" id="employer3" name="aboutMyself" rows="3"></textarea>
         </div>
         <div class="form-group text-light">
-            <label for="exampleInputEmail1" class="offset-sm-2"> Nationality </label>
-            <select class="form-control col-2 offset-sm-2" name="nationality">
-                <#list nationality as nati>
-                    <option value="${nati.id}"> ${nati.name}</option>
+            <label for="applicant1" class="offset-sm-2"> Native Language </label>
+            <select class="form-control col-2 offset-sm-2" name="nativeLanguage">
+                <#list languages as language>
+                    <option value="${language.id}"> ${language.name}</option>
                 </#list>
             </select>
         </div>
+
+        <div class="dropdown mt-2">
+            <label for="appl" class="offset-sm-2 text-light"> Foreign Languages </label>
+            <br><button class="btn btn-light dropdown-toggle offset-sm-2" type="button" id="appl" data-toggle="dropdown">
+                Selected <span class="caret"></span>
+            </button><br>
+            <ul class="dropdown-menu">
+                <#list languages as language>
+                    <li class="dropdown-input offset-sm-1"><label><input type="checkbox" name="foreignLanguages" value="${language.id}"> ${language.name}</label></li>
+                </#list>
+            </ul>
+        </div>
 </div>
-<div class="form-group text-light">
-    <label for="telephone" class="offset-sm-2">Telephone</label>
-    <input type="text" name="telephone" id="phone" class="form-control bfh-phone col-2 offset-sm-2"
-           data-format="+375 (dd) ddd-dddd" value="" pattern="(\+[\d\ \(\)\-]{16})">
-</div>
+
 <button type="submit" class="btn btn-primary offset-sm-2">Submit</button>
 </form>
 </div>
@@ -105,5 +113,10 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
+<script>
+    $('.dropdown-input').click(function(event){
+        event.stopPropagation();
+    });
+</script>
 </body>
 </html>

@@ -43,7 +43,7 @@
                         <dd class="col-sm-6">${currentApplicant.birthday.time?string["yyyy-MM-dd"]}</dd>
                         <dt class="col-sm-4 offset-sm-1"> Nationality </dt>
                         <dd class="col-sm-6">
-                            <#list natiList as nati>
+                            <#list currentApplicant.nationality as nati>
                             <li>${nati.name}
                             </#list>
                         </dd>

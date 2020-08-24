@@ -4,10 +4,7 @@ import lombok.Data;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import tms.findjops.model.Applicant;
-import tms.findjops.model.Employer;
-import tms.findjops.model.Gender;
-import tms.findjops.model.Nationality;
+import tms.findjops.model.*;
 import tms.findjops.service.ApplicantService;
 import tms.findjops.service.EmployerService;
 import tms.findjops.service.UserDTO;
@@ -104,18 +101,16 @@ public class UserController {
     }
 
     @RequestMapping(value = "/applicant/account", method = RequestMethod.GET)
-    public String accountG (HttpSession httpSession, Model model){
-        Applicant currentApplicant1 = (Applicant) httpSession.getAttribute("currentApplicant");
-        List<Nationality> nationality = currentApplicant1.getNationality();
-        model.addAttribute("natiList", nationality);
+    public String accountG (){
         return "/applicant/account";
     }
 
     @RequestMapping(value = "/applicant/addResume", method = RequestMethod.GET)
-    public String addResumeG (HttpSession httpSession, Model model){
-        Applicant currentApplicant1 = (Applicant) httpSession.getAttribute("currentApplicant");
-        List<Nationality> nationality = currentApplicant1.getNationality();
-        model.addAttribute("natiList", nationality);
+    public String addResumeG (Model model){
+        List<Language> allLanguage = applicantService.getAllLanguage();
+        List<Profession> allProfession = applicantService.getAllProfession();
+        model.addAttribute("languages", allLanguage);
+        model.addAttribute("professions", allProfession);
         return "/applicant/addresume";
     }
 
