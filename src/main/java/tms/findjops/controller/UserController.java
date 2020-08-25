@@ -6,8 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import tms.findjops.model.*;
 import tms.findjops.service.ApplicantService;
+import tms.findjops.service.DTO.ResumeDTO;
 import tms.findjops.service.EmployerService;
-import tms.findjops.service.UserDTO;
+import tms.findjops.service.DTO.UserDTO;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -112,6 +113,22 @@ public class UserController {
         model.addAttribute("languages", allLanguage);
         model.addAttribute("professions", allProfession);
         return "/applicant/addresume";
+    }
+
+    @RequestMapping(value = "/applicant/addResume", method = RequestMethod.POST)
+    public String addResumeP (ResumeDTO resumeDTO, HttpSession httpSession){
+        Applicant currentApplicant = (Applicant) httpSession.getAttribute("currentApplicant");
+        resumeDTO.setApplicant(currentApplicant);
+        httpSession.setAttribute("resumeDTO", resumeDTO);
+        return ("redirect:/user/applicant/addWorks");
+    }
+
+    @RequestMapping(value = "/applicant/addWorks", method = RequestMethod.GET)
+    public String addWorksG (HttpSession httpSession){
+        ResumeDTO resumeDTO = (ResumeDTO) httpSession.getAttribute("resumeDTO");
+        String placeOfWorks = resumeDTO.getPlaceOfWorks();
+        if (placeOfWorks.equals("No")){return ("redirect:/user/applicant/addEducation");}
+        return "/applicant/addwork";
     }
 
 

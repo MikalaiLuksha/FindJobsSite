@@ -22,6 +22,7 @@
 
 
     <dependencies>
+
         <dependency>
             <groupId>org.webjars.bower</groupId>
             <artifactId>bootstrap</artifactId>

@@ -21,7 +21,7 @@
 </head>
 <body>
 
-<div class="card mb-10 offset-sm-1 mt-4" style="max-width: 540px; background-color: #e6e4f3">
+<div class="card mb-10 offset-sm-2 mt-4" style="max-width: 540px; background-color: #e6e4f3">
     <div class="row no-gutters">
         <div class="col-md-4">
             <img src="https://c7.hotpng.com/preview/895/85/169/computer-icons-businessperson-clip-art-business-woman.jpg" class="card-img" alt="...">
@@ -92,9 +92,31 @@
                 </#list>
             </ul>
         </div>
+
+        <div class="form-group text-light">
+            <label for="applicant1" class="offset-sm-2"> Work experience </label>
+            <select class="form-control col-2 offset-sm-2" name="placeOfWorks">
+                <#assign works = ["Yes", "No"]>
+                <#list works as work>
+                    <option value="${work}"> ${work}</option>
+                </#list>
+            </select>
+        </div>
+
+        <div class="form-group text-light">
+            <label for="applicant1" class="offset-sm-2"> Education </label>
+            <select class="form-control col-2 offset-sm-2" name="educations">
+                <#assign educations = ["Schools", "Colleges", "Universities"]>
+                <#list educations as education>
+                    <option value="${education}"> ${education}</option>
+                </#list>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary offset-sm-2">Submit</button>
+    </form>
 </div>
 
-<button type="submit" class="btn btn-primary offset-sm-2">Submit</button>
+
 </form>
 </div>
 

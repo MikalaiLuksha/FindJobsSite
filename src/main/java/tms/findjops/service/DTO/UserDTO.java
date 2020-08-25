@@ -1,4 +1,4 @@
-package tms.findjops.service;
+package tms.findjops.service.DTO;
 import org.springframework.stereotype.Service;
 
 @Service
