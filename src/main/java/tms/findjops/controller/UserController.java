@@ -11,6 +11,7 @@ import tms.findjops.service.EmployerService;
 import tms.findjops.service.DTO.UserDTO;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -128,7 +129,35 @@ public class UserController {
         ResumeDTO resumeDTO = (ResumeDTO) httpSession.getAttribute("resumeDTO");
         String placeOfWorks = resumeDTO.getPlaceOfWorks();
         if (placeOfWorks.equals("No")){return ("redirect:/user/applicant/addEducation");}
-        return "/applicant/addwork";
+        else {
+        return "/applicant/addwork";}
+    }
+
+    @RequestMapping(value = "/applicant/addWorks", method = RequestMethod.POST)
+    public String addWorksG (PlaceOfWork placeOfWork, HttpSession httpSession, String key) {
+        List<PlaceOfWork> listPlaceOfWorks = (List<PlaceOfWork>) httpSession.getAttribute("listPlaceOfWorks");
+        if (listPlaceOfWorks == null) {
+            listPlaceOfWorks = new ArrayList<>();
+        }
+        listPlaceOfWorks.add(placeOfWork);
+        httpSession.setAttribute("listPlaceOfWorks", listPlaceOfWorks);
+        if (key.equals("1")) {
+            return "/applicant/addwork";
+        }
+        if (key.equals("2")) {
+            return "redirect:/user/applicant/addEducation";
+        }
+        return "/";
+    }
+
+
+    @RequestMapping(value = "/applicant/addEducation", method = RequestMethod.GET)
+    public String addEducationG (HttpSession httpSession){
+        ResumeDTO resumeDTO = (ResumeDTO) httpSession.getAttribute("resumeDTO");
+        String educations = resumeDTO.getEducations();
+        if (educations.equals("Schools")){return ("redirect:/");}
+        else {
+            return "/applicant/addeducation";}
     }
 
 

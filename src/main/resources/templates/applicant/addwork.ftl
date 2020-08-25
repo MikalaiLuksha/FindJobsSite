@@ -2,41 +2,44 @@
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/css/datepicker.min.css" rel="stylesheet">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 
-<div class="tab-pane fade show active" id="applicant" role="tabpanel" aria-labelledby="home-tab">
-    <form action="/user/applicant/addProfile" method="post">
+    <form>
         <h6 class="mt-4"></h6>
         <div class="form-group text-light">
-            <label for="applicant1" class="offset-sm-2"> Birthday </label>
-            <div class="container">
-                <div class="col-sm-6" style="height:130px;">
-                    <div class="form-group">
-                        <div class='input-group date' id='datetimepicker10'>
-                            <input type='text' class="form-control" />
-                            <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar">
-                    </span>
-                </span>
-                        </div>
-                    </div>
-                </div>
-                <script type="text/javascript">
-                    $(function () {
-                        $('#datetimepicker10').datetimepicker({
-                            viewMode: 'years',
-                            format: 'MM/YYYY'
-                        });
-                    });
-                </script>
-            </div>
+            <label for="datepicker" class="offset-sm-2">  Beginning of work </label>
+            <input type="text" class="form-control col-2 offset-sm-2" name="beginningOfWork" id="datepicker" />
         </div>
-               <button type="submit" class="btn btn-primary offset-sm-2">Submit</button>
+        <div class="form-group text-light">
+            <label for="datepicker2" class="offset-sm-2">  End of work </label>
+            <input type="text" class="form-control col-2 offset-sm-2" name="endOfWork" id="datepicker2" />
+        </div>
+        <div class="form-group text-light">
+            <label for="applicant3" class="offset-sm-2">Organization </label>
+            <input type="text" class="form-control col-4 offset-sm-2" id="applicant3" name="organization">
+        </div>
+        <div class="form-group text-light">
+            <label for="applicant4" class="offset-sm-2">Position </label>
+            <input type="text" class="form-control col-4 offset-sm-2" id="applicant4" name="position">
+        </div>
+        <div class="form-group text-light">
+            <label for="employer5" class="offset-sm-2">Workplace responsibilities</label>
+            <textarea class="form-control col-4 offset-sm-2" id="employer5" name="workplaceResponsibilities" rows="3"></textarea>
+        </div>
+        <button type="submit" formaction="/user/applicant/addWorks?key=1"
+                class="btn btn-primary offset-sm-2" formmethod="post"> Save add new works
+        </button>
+        <button type="submit" formaction="/user/applicant/addWorks?key=2"
+                class="btn btn-primary offset-sm-2" formmethod="post"> Next
+        </button>
     </form>
-</div>
+
+
+
 
 <style>
     body {
@@ -45,15 +48,8 @@
 </style>
 
 
-<script type="text/javascript" src="/bower_components/jquery/jquery.min.js"></script>
-<script type="text/javascript" src="/bower_components/moment/min/moment.min.js"></script>
-<script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
-<link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" />
-<link rel="stylesheet" href="/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
         crossorigin="anonymous"></script>
@@ -66,5 +62,15 @@
     });
 </script>
 
+<script>$("#datepicker").datepicker( {
+        format: "mm-yyyy",
+        startView: "months",
+        minViewMode: "months"
+    });</script>
+    <script>$("#datepicker2").datepicker( {
+            format: "mm-yyyy",
+            startView: "months",
+            minViewMode: "months"
+        });</script>
 </body>
 </html>
