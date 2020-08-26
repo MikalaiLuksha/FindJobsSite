@@ -24,10 +24,10 @@
             <a class="nav-link" href="/user/applicant/account">Personal Information</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/user/applicant/addResume">Create resume</a>
+            <a class="nav-link" href="/resume/addResume">Create resume</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">You resume</a>
+            <a class="nav-link" href="/resume/youResume">You resume</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#">Response</a>

@@ -107,64 +107,6 @@ public class UserController {
         return "/applicant/account";
     }
 
-    @RequestMapping(value = "/applicant/addResume", method = RequestMethod.GET)
-    public String addResumeG (Model model){
-        List<Language> allLanguage = applicantService.getAllLanguage();
-        List<Profession> allProfession = applicantService.getAllProfession();
-        model.addAttribute("languages", allLanguage);
-        model.addAttribute("professions", allProfession);
-        return "/applicant/addresume";
-    }
-
-    @RequestMapping(value = "/applicant/addResume", method = RequestMethod.POST)
-    public String addResumeP (ResumeDTO resumeDTO, HttpSession httpSession){
-        Applicant currentApplicant = (Applicant) httpSession.getAttribute("currentApplicant");
-        resumeDTO.setApplicant(currentApplicant);
-        httpSession.setAttribute("resumeDTO", resumeDTO);
-        return ("redirect:/user/applicant/addWorks");
-    }
-
-    @RequestMapping(value = "/applicant/addWorks", method = RequestMethod.GET)
-    public String addWorksG (HttpSession httpSession){
-        ResumeDTO resumeDTO = (ResumeDTO) httpSession.getAttribute("resumeDTO");
-        String placeOfWorks = resumeDTO.getPlaceOfWorks();
-        if (placeOfWorks.equals("No")){return ("redirect:/user/applicant/addEducation");}
-        else {
-        return "/applicant/addwork";}
-    }
-
-    @RequestMapping(value = "/applicant/addWorks", method = RequestMethod.POST)
-    public String addWorksG (PlaceOfWork placeOfWork, HttpSession httpSession, String key) {
-        List<PlaceOfWork> listPlaceOfWorks = (List<PlaceOfWork>) httpSession.getAttribute("listPlaceOfWorks");
-        if (listPlaceOfWorks == null) {
-            listPlaceOfWorks = new ArrayList<>();
-        }
-        listPlaceOfWorks.add(placeOfWork);
-        httpSession.setAttribute("listPlaceOfWorks", listPlaceOfWorks);
-        if (key.equals("1")) {
-            return "/applicant/addwork";
-        }
-        if (key.equals("2")) {
-            return "redirect:/user/applicant/addEducation";
-        }
-        return "/";
-    }
-
-
-    @RequestMapping(value = "/applicant/addEducation", method = RequestMethod.GET)
-    public String addEducationG (HttpSession httpSession){
-        ResumeDTO resumeDTO = (ResumeDTO) httpSession.getAttribute("resumeDTO");
-        String educations = resumeDTO.getEducations();
-        if (educations.equals("Schools")){return ("redirect:/");}
-        else {
-            return "/applicant/addeducation";}
-    }
-
-
-
-
-
-
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logoutG(HttpSession httpSession){

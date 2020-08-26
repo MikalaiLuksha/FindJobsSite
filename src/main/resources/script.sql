@@ -103,7 +103,7 @@ alter table language
 create unique index language_id_uindex
     on language (id);
 
-create table place_of_works
+create table place_of_work
 (
     id                         serial not null
         constraint place_of_works_pk
@@ -115,11 +115,11 @@ create table place_of_works
     workplace_responsibilities varchar
 );
 
-alter table place_of_works
+alter table place_of_work
     owner to postgres;
 
 create unique index place_of_works_id_uindex
-    on place_of_works (id);
+    on place_of_work (id);
 
 create table education
 (
@@ -130,7 +130,7 @@ create table education
     educational_institution varchar,
     faculty                 varchar,
     specialization          varchar,
-    year_of_ending          integer
+    year_of_ending          varchar
 );
 
 alter table education
@@ -138,5 +138,50 @@ alter table education
 
 create unique index education_id_uindex
     on education (id);
+
+create table resume
+(
+    id                 serial not null
+        constraint resume_pk
+            primary key,
+    salary             integer,
+    about_myself       varchar,
+    applicant_id       integer,
+    native_language_id integer,
+    profession_id      integer
+);
+
+alter table resume
+    owner to postgres;
+
+create unique index resume_id_uindex
+    on resume (id);
+
+create table resume_educations
+(
+    resume_id     integer,
+    educations_id integer
+);
+
+alter table resume_educations
+    owner to postgres;
+
+create table resume_place_of_works
+(
+    resume_id         integer,
+    place_of_works_id integer
+);
+
+alter table resume_place_of_works
+    owner to postgres;
+
+create table resume_foreign_languages
+(
+    resume_id            integer,
+    foreign_languages_id integer
+);
+
+alter table resume_foreign_languages
+    owner to postgres;
 
 

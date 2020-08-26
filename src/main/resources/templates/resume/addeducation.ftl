@@ -23,21 +23,16 @@
         <textarea class="form-control col-4 offset-sm-2" id="employer5" name="specialization" rows="3"></textarea>
     </div>
     <div class="form-group text-light">
-        <label for="employer5" class="offset-sm-2">Year of ending</label>
-        <select class="form-control col-2 offset-sm-2" name="yearOfEnding">
-    <#list 1950..2020 as x>
-        <option value="${x}"> ${x}</option>
-    </#list>
-        </select>
+            <label for="datepicker" class="offset-sm-2">Year of ending </label>
+            <input type="text" class="form-control col-2 offset-sm-2" name="yearOfEnding" id="datepicker" />
     </div>
-    <button type="submit" formaction="/user/applicant/addEducation?key=1"
+    <button type="submit" formaction="/resume/addEducation?key=1"
             class="btn btn-primary offset-sm-2" formmethod="post"> Save add new Education
     </button>
-    <button type="submit" formaction="/user/applicant/addEducation?key=2"
+    <button type="submit" formaction="/resume/addEducation?key=2"
             class="btn btn-primary offset-sm-2" formmethod="post"> Next
     </button>
 </form>
-
 
 <style>
     body {
@@ -61,14 +56,10 @@
 </script>
 
 <script>$("#datepicker").datepicker( {
-        format: "mm-yyyy",
-        startView: "months",
-        minViewMode: "months"
+        format: "yyyy",
+        startView: "years",
+        minViewMode: "years"
     });</script>
-<script>$("#datepicker2").datepicker( {
-        format: "mm-yyyy",
-        startView: "months",
-        minViewMode: "months"
-    });</script>
+
 </body>
 </html>

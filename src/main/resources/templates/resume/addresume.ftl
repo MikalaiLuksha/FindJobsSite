@@ -53,7 +53,7 @@
 </div>
 
 <div class="tab-pane fade show active" id="applicant" role="tabpanel" aria-labelledby="home-tab">
-    <form action="/user/applicant/addResume" method="post">
+    <form action="/resume/addResume" method="post">
         <h6 class="mt-4"></h6>
         <div class="form-group text-light">
             <label for="applicant1" class="offset-sm-2"> Profession </label>

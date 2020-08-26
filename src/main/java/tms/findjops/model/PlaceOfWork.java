@@ -27,7 +27,7 @@ public class PlaceOfWork {
     @Column(name = "organization")
     private String organization;
 
-    @Column(name = "position")
+    @Column(name = "position_")
     private String position;
 
     @Column(name = "workplace_responsibilities")

@@ -30,5 +30,9 @@ public class Education {
     private String specialization;
 
     @Column(name = "year_of_ending")
-    private int yearOfEnding;
+    private String yearOfEnding;
+
+    public Education(String level) {
+        this.level = level;
+    }
 }

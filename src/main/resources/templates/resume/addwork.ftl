@@ -30,10 +30,10 @@
             <label for="employer5" class="offset-sm-2">Workplace responsibilities</label>
             <textarea class="form-control col-4 offset-sm-2" id="employer5" name="workplaceResponsibilities" rows="3"></textarea>
         </div>
-        <button type="submit" formaction="/user/applicant/addWorks?key=1"
+        <button type="submit" formaction="/resume/addWorks?key=1"
                 class="btn btn-primary offset-sm-2" formmethod="post"> Save add new works
         </button>
-        <button type="submit" formaction="/user/applicant/addWorks?key=2"
+        <button type="submit" formaction="/resume/addWorks?key=2"
                 class="btn btn-primary offset-sm-2" formmethod="post"> Next
         </button>
     </form>
