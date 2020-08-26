@@ -36,8 +36,22 @@
             <a class="nav-link" href="/user/logout">Logout</a>
         </li>
         <#elseif checkRegE??>
-            <a href="/user/employer/account">Personal Account</a>
-            <a href="/user/logout">logout</a>
+            <li class="nav-item">
+                <a class="nav-link" href="/user/applicant/account">Company Information</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/advert/addAdvert">Create advert</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/resume/youResume">You advert</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Response</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/user/logout">Logout</a>
+            </li>
+
         </#if>
     </ul>
 </nav>

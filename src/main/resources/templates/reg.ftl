@@ -68,6 +68,10 @@
                 <input type="text" class="form-control col-4 offset-sm-2" id="employer4" name="company">
             </div>
             <div class="form-group text-light">
+                <label for="employer5" class="offset-sm-2">Address</label>
+                <input type="text" class="form-control col-4 offset-sm-2" id="employer5" name="address">
+            </div>
+            <div class="form-group text-light">
                 <label for="exampleInputPassword2" class="offset-sm-2">Password</label>
                 <input type="password" name="password" class="form-control col-4 offset-sm-2" id="exampleInputPassword2">
             </div>

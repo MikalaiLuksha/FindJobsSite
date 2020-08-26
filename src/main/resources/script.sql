@@ -37,7 +37,8 @@ create table employer
     email      varchar,
     phone      varchar,
     company    varchar,
-    password   varchar
+    password   varchar,
+    address    varchar
 );
 
 alter table employer
@@ -103,7 +104,7 @@ alter table language
 create unique index language_id_uindex
     on language (id);
 
-create table place_of_work
+create table place_of_works
 (
     id                         serial not null
         constraint place_of_works_pk
@@ -115,11 +116,11 @@ create table place_of_work
     workplace_responsibilities varchar
 );
 
-alter table place_of_work
+alter table place_of_works
     owner to postgres;
 
 create unique index place_of_works_id_uindex
-    on place_of_work (id);
+    on place_of_works (id);
 
 create table education
 (
@@ -130,7 +131,7 @@ create table education
     educational_institution varchar,
     faculty                 varchar,
     specialization          varchar,
-    year_of_ending          varchar
+    year_of_ending          integer
 );
 
 alter table education
@@ -183,5 +184,25 @@ create table resume_foreign_languages
 
 alter table resume_foreign_languages
     owner to postgres;
+
+create table advert
+(
+    id             serial not null
+        constraint advert_pk
+            primary key,
+    employer_id    integer,
+    profession_id  integer,
+    salary         integer,
+    responsibility varchar,
+    requirements   varchar,
+    terms          varchar,
+    add_date       timestamp
+);
+
+alter table advert
+    owner to postgres;
+
+create unique index advert_id_uindex
+    on advert (id);
 
 
