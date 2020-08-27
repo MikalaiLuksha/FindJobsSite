@@ -113,4 +113,10 @@ public class ResumeController {
         return "/resume/resume";
     }
 
+    @RequestMapping(value = "/deleted", method = RequestMethod.POST)
+    public String Deleted(long id){
+        resumeService.deleted(id);
+        return ("redirect:/resume/youResume");
+    }
+
 }

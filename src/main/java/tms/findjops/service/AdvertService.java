@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import tms.findjops.model.Advert;
 import tms.findjops.repository.AdvertRepository;
 
+import java.util.List;
+
 @Service
 @Data
 @AllArgsConstructor
@@ -16,4 +18,6 @@ public class AdvertService {
     public void createAdvert(Advert advert){
         advertRepository.save(advert);
         }
+
+        public List<Advert>
 }

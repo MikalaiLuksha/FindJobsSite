@@ -51,4 +51,6 @@ public class ResumeService {
     public Resume getResume(long id){
         return resumeRepository.getOne(id);
     }
+
+    public void deleted (long id){resumeRepository.deleteById(id);}
 }
