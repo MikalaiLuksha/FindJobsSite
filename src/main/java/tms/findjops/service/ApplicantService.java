@@ -5,10 +5,7 @@ import lombok.Data;
 
 import org.springframework.stereotype.Service;
 import tms.findjops.model.*;
-import tms.findjops.repository.ApplicantRepository;
-import tms.findjops.repository.LanguageRepository;
-import tms.findjops.repository.NationalityRepository;
-import tms.findjops.repository.ProfessionRepository;
+import tms.findjops.repository.*;
 
 import java.util.List;
 
@@ -17,11 +14,12 @@ import java.util.List;
 @AllArgsConstructor
 public class ApplicantService {
 
+    private final AdministratorRepository administratorRepository;
+    private final EmployerRepository employerRepository;
     private final ApplicantRepository applicantRepository;
     private final NationalityRepository nationalityRepository;
     private final LanguageRepository languageRepository;
     private final ProfessionRepository professionRepository;
-//    private final ModelMapper modelMapper;
 
     public void createApplicant(Applicant applicant) {
         applicantRepository.save(applicant);
@@ -37,9 +35,11 @@ public class ApplicantService {
         return null;
     }
 
-    public boolean checkReg(String email){
-        Applicant applicant = applicantRepository.findByEmail(email);
-        return applicant == null;
+    public boolean checkApplicantReg (Applicant applicant){
+        Applicant applicantCheck = applicantRepository.findByEmail(applicant.getEmail());
+        Employer employerCheck = employerRepository.findByEmail(applicant.getEmail());
+        Administrator administratorCheck = administratorRepository.findByEmail(applicant.getEmail());
+        return applicantCheck == null && employerCheck == null && administratorCheck == null;
     }
     
     public Applicant getApplicant(){

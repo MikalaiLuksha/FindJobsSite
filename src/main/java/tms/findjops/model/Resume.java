@@ -42,6 +42,9 @@ public class Resume {
     @OneToOne(fetch = FetchType.EAGER)
     private Language nativeLanguage;
 
+    @Column(name = "work_experience")
+    private String workExperience;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @Fetch(value = FetchMode.SUBSELECT)
     private List<Language> foreignLanguages;

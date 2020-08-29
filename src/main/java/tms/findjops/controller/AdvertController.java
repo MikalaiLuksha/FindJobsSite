@@ -3,12 +3,12 @@ package tms.findjops.controller;
 import lombok.Data;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import tms.findjops.model.Advert;
 import tms.findjops.model.Employer;
 import tms.findjops.model.Profession;
-import tms.findjops.repository.AdvertRepository;
 import tms.findjops.service.AdvertService;
 import tms.findjops.service.ResumeService;
 
@@ -42,5 +42,26 @@ public class AdvertController {
         advert.setEmployer(currentEmployer);
         advertService.createAdvert(advert);
         return "index";
+    }
+
+    @RequestMapping(value = "/youAdvert", method = RequestMethod.GET)
+    public String youAdvertG(HttpSession httpSession, Model model){
+       Employer currentEmployer = (Employer) httpSession.getAttribute("currentEmployer");
+        List<Advert> allAdvertById = advertService.getAllAdvertById(currentEmployer.getId());
+        model.addAttribute("adverts", allAdvertById);
+        return "/advert/youadvert";
+    }
+
+    @RequestMapping(value = "/advert/{id}", method = RequestMethod.GET)
+    public String advertG (Model model, @PathVariable(name = "id") long id){
+        Advert advertById = advertService.getAdvertById(id);
+        model.addAttribute("advert", advertById);
+        return "/advert/advert";
+    }
+
+    @RequestMapping(value = "/deleted/{id}", method = RequestMethod.POST)
+    public String deletedP (@PathVariable(name = "id") long id){
+       advertService.deleted(id);
+        return "/advert/youadvert";
     }
 }

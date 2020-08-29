@@ -20,29 +20,35 @@
 </head>
 <body>
 
+<#if allApplicantResume??>
 <#list allApplicantResume as resume>
     <div class="card w-75">
         <div class="card-body mb-0">
             <h5 class="card-title">${resume.applicant.firstName} ${resume.applicant.lastName}</h5>
             <p class="card-text overflow-auto">
-            <li>${resume.profession.name}</li>
-            <#list resume.educations as education>
-            <li> ${education.level}
-                <#if education.educationalInstitution??>
-            <li> ${education.educationalInstitution}
-            <li> ${education.yearOfEnding}
-                </#if>
-                </#list>
-            <li>${resume.aboutMyself}</li>
-            </p>
+            <dl class="row">
+                <dt class="col-sm-2"> Profession </dt>
+                <dd class="col-sm-10">${resume.profession.name}</dd>
+                <dt class="col-sm-2"> Educations</dt>
+                <dd class="col-sm-10">
+                <#list resume.educations as education>
+                <li> ${education.level}
+                    </#list>
+                </dd>
+                <dt class="col-sm-2"> Work experience </dt>
+                <dd class="col-sm-10">${resume.workExperience}</dd>
+                <dt class="col-sm-2"> About myself </dt>
+                <dd class="col-sm-10">${resume.aboutMyself}</dd>
+            </dl>
+              </p>
             <div class="d-flex justify-content-start mb-n3">
                 <div class="p-2 bd-highlight mb-0">
-                    <form action="/resume/Resume?id=${resume.id}" method="get">
-                        <button type="submit" class="btn btn-primary">Open</button>
+                    <form action="/resume/resume/${resume.id}" method="get">
+                        <button type="submit" class="btn btn-primary" value="">Open</button>
                     </form>
                 </div>
                 <div class="p-2 bd-highlight mb-0">
-                    <form action="/resume/deleted?id=${resume.id}" method="post">
+                    <form action="/resume/deleted/${resume.id}" method="post">
                         <button type="submit" class="btn btn-primary">Deleted</button>
                     </form>
                 </div>
@@ -50,6 +56,7 @@
         </div>
     </div>
 </#list>
+</#if>
 
 <style>
     body {

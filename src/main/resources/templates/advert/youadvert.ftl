@@ -20,29 +20,29 @@
 </head>
 <body>
 
-<#list allApplicantResume as resume>
+<#list adverts as advert>
     <div class="card w-75">
         <div class="card-body mb-0">
-            <h5 class="card-title">${resume.applicant.firstName} ${resume.applicant.lastName}</h5>
+            <h5 class="card-title">${advert.profession.name}</h5>
             <p class="card-text overflow-auto">
-            <li>${resume.profession.name}</li>
-            <#list resume.educations as education>
-            <li> ${education.level}
-                <#if education.educationalInstitution??>
-            <li> ${education.educationalInstitution}
-            <li> ${education.yearOfEnding}
-                </#if>
-                </#list>
-            <li>${resume.aboutMyself}</li>
+            <dl class="row">
+                <dt class="col-sm-2"> Company</dt>
+                <dd class="col-sm-10">${advert.employer.company}</dd>
+                <dt class="col-sm-2"> Salary</dt>
+                <dd class="col-sm-10">${advert.salary}</dd>
+                <dt class="col-sm-2"> Requirements</dt>
+                <dd class="col-sm-10"> ${advert.requirements}</dd>
+                <dt class="col-sm-2"> Add date</dt>
+                <dd class="col-sm-10">${advert.addDate.time?string["yyyy-MM-dd"]}</dd>
             </p>
             <div class="d-flex justify-content-start mb-n3">
                 <div class="p-2 bd-highlight mb-0">
-                    <form action="/resume/Resume?id=${resume.id}" method="get">
+                    <form action="/advert/advert/${advert.id}" method="get">
                         <button type="submit" class="btn btn-primary">Open</button>
                     </form>
                 </div>
                 <div class="p-2 bd-highlight mb-0">
-                    <form action="/resume/deleted?id=${resume.id}" method="post">
+                    <form action="/advert/deleted/${advert.id}" method="post">
                         <button type="submit" class="btn btn-primary">Deleted</button>
                     </form>
                 </div>

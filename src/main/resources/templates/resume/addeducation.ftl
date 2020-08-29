@@ -11,6 +11,15 @@
 <form>
     <h6 class="mt-4"></h6>
     <div class="form-group text-light">
+        <label for="applicant3" class="offset-sm-2">level</label>
+        <select class="form-control col-2 offset-sm-2" name="level">
+        <#assign levels = ["secondary special", "higher professional", "bachelor", "master"]>
+        <#list levels as level>
+            <option value="${level}"> ${level}</option>
+        </#list>
+        </select>
+    </div>
+    <div class="form-group text-light">
         <label for="applicant3" class="offset-sm-2">Educational institution </label>
         <input type="text" class="form-control col-4 offset-sm-2" id="applicant3" name="educationalInstitution">
     </div>

@@ -20,11 +20,11 @@ public class ResumeDTO {
 
     private int salary;
 
-    private String placeOfWorks;
+    private String workExperience;
 
     private String aboutMyself;
 
-    private String educations;
+    private String educationLevel;
 
     private Language nativeLanguage;
 

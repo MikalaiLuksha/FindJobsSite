@@ -10,64 +10,15 @@
     <title>Title</title>
 </head>
 <body>
+
 <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
     <ul class="nav">
-        <#if !checkReg??>
-            <li class="nav-item">
-                <a class="nav-link" href="/user/reg">Registration</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/user/auth">Authorisation</a>
-            </li>
-        <#elseif checkRegA??>
-            <li class="nav-item">
-                <a class="nav-link" href="/user/applicant/account">Personal Information</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/resume/addResume">Create resume</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/resume/youResume">You resume</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Response</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/user/logout">Logout</a>
-            </li>
-        <#elseif checkRegE??>
-            <li class="nav-item">
-                <a class="nav-link" href="/user/employer/account">Company Information</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/resume/resumeList">Resume list</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/advert/addAdvert">Create advert</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/advert/youAdvert">You advert</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/user/logout">Logout</a>
-            </li>
-        <#elseif checkRegAd??>
-            <li class="nav-item">
-                <a class="nav-link" href="/user/applicant/account">User list</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/advert/addAdvert">Resume list</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/advert/youAdvert">Advert list</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Response</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/user/logout">Logout</a>
-            </li>
-        </#if>
+        <li class="nav-item">
+            <a class="nav-link active" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">###########</a>
+        </li>
     </ul>
 </nav>
 
@@ -97,7 +48,7 @@
                 <#assign periods = ["less 1000", "1000 - 1500", "1500 - 2000", "more 2000"]>
                 <#list periods as period>
                     <li class="dropdown-input offset-sm-1"><label><input type="radio" name="foreignLanguages"
-                                                                         value="${period}"> ${period}</label></li>
+                     value="${period}"> ${period}</label></li>
                 </#list>
             </ul>
         </div>
@@ -117,32 +68,37 @@
     </div>
 </div>
 
-<#if allAdvert??>
-    <#list allAdvert as advert>
-        <div class="card w-75">
-            <div class="card-body mb-0">
-                <h5 class="card-title">${advert.profession.name}</h5>
-                <p class="card-text overflow-auto">
-                <dl class="row">
-                    <dt class="col-sm-2"> Company</dt>
-                    <dd class="col-sm-10">${advert.employer.company}</dd>
-                    <dt class="col-sm-2"> Salary</dt>
-                    <dd class="col-sm-10">${advert.salary}</dd>
-                    <dt class="col-sm-2"> Requirements</dt>
-                    <dd class="col-sm-10"> ${advert.requirements}</dd>
-                    <dt class="col-sm-2"> Add date</dt>
-                    <dd class="col-sm-10">${advert.addDate.time?string["yyyy-MM-dd"]}</dd>
-                    <div class="d-flex justify-content-start mb-n3">
-                        <div class="p-2 bd-highlight mb-0">
-                            <form action="/advert/advert/${advert.id}" method="get">
-                                <button type="submit" class="btn btn-primary">Open</button>
-                            </form>
-                        </div>
-                    </div>
-                </dl>
+<#if resumes??>
+<#list resumes as resume>
+    <div class="card w-75">
+        <div class="card-body mb-0">
+            <h5 class="card-title">${resume.applicant.firstName} ${resume.applicant.lastName}</h5>
+            <p class="card-text overflow-auto">
+            <dl class="row">
+                <dt class="col-sm-2"> Profession </dt>
+                <dd class="col-sm-10">${resume.profession.name}</dd>
+                <dt class="col-sm-2"> Educations</dt>
+                <dd class="col-sm-10">
+                    <#list resume.educations as education>
+                    <li> ${education.level}
+                        </#list>
+                </dd>
+                <dt class="col-sm-2"> Work experience </dt>
+                <dd class="col-sm-10">${resume.workExperience}</dd>
+                <dt class="col-sm-2"> About myself </dt>
+                <dd class="col-sm-10">${resume.aboutMyself}</dd>
+            </dl>
+            </p>
+            <div class="d-flex justify-content-start mb-n3">
+                <div class="p-2 bd-highlight mb-0">
+                    <form action="/resume/resume/${resume.id}" method="get">
+                        <button type="submit" class="btn btn-primary" value="">Open</button>
+                    </form>
+                </div>
             </div>
         </div>
-    </#list>
+    </div>
+</#list>
 </#if>
 <div class="fixed-bottom">
     <nav aria-label="Page navigation example">

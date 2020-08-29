@@ -19,5 +19,19 @@ public class AdvertService {
         advertRepository.save(advert);
         }
 
-        public List<Advert>
+        public List<Advert> getAllAdvertById(long id){
+        return advertRepository.findAllByEmployerId(id);
+        }
+
+        public List<Advert> getAll (){
+        return advertRepository.findAll();
+        }
+
+        public Advert getAdvertById (long id){
+        return advertRepository.getOne(id);
+        }
+
+        public void deleted (long id){
+        advertRepository.deleteById(id);
+        }
 }

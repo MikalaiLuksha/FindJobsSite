@@ -8,7 +8,6 @@ insert into nationality (id, name) values (default, 'German');
 insert into nationality (id, name) values (default, 'Latvian');
 insert into nationality (id, name) values (default, 'Austrian');
 
-
 insert into profession (id, name) values (default, 'Architects');
 insert into profession (id, name) values (default, 'Chemical Engineers');
 insert into profession (id, name) values (default, 'Mechanical Engineers');
@@ -35,4 +34,5 @@ insert into language (id, name) values (default, 'Turkmen');
 insert into language (id, name) values (default, 'Chinese');
 insert into language (id, name) values (default, 'French');
 insert into language (id, name) values (default, 'Greek');
-insert into language (id, name) values (default, 'Japanese')
+insert into language (id, name) values (default, 'Japanese');
+insert into language (id, name) values (default, 'English')

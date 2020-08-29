@@ -7,6 +7,11 @@ import tms.findjops.model.*;
 import tms.findjops.repository.*;
 import tms.findjops.service.DTO.ResumeDTO;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.List;
 
 @Service
@@ -48,9 +53,24 @@ public class ResumeService {
         return resumeRepository.findAllByApplicant_Id(id);
     }
 
+    public List<Resume> getAllResume(){
+        return resumeRepository.findAll();
+    }
+
     public Resume getResume(long id){
         return resumeRepository.getOne(id);
     }
 
-    public void deleted (long id){resumeRepository.deleteById(id);}
+    public void deleted (long id){
+        resumeRepository.deleteById(id);
+        placeOfWorksRepository.deleteById(id);
+        professionRepository.deleteById(id);
+    }
+
+    public Period getAge(Resume resume){
+        Calendar calendar = resume.getApplicant().getBirthday();
+        LocalDate endDate = LocalDateTime.ofInstant(calendar.toInstant(), calendar.getTimeZone().toZoneId()).toLocalDate();
+        LocalDate startDate = LocalDate.now();
+        return Period.between(endDate, startDate);
+    }
 }

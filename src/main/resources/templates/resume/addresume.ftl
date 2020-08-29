@@ -95,7 +95,7 @@
 
         <div class="form-group text-light">
             <label for="applicant1" class="offset-sm-2"> Work experience </label>
-            <select class="form-control col-2 offset-sm-2" name="placeOfWorks">
+            <select class="form-control col-2 offset-sm-2" name="workExperience">
                 <#assign works = ["Yes", "No"]>
                 <#list works as work>
                     <option value="${work}"> ${work}</option>
@@ -105,8 +105,8 @@
 
         <div class="form-group text-light">
             <label for="applicant1" class="offset-sm-2"> Education </label>
-            <select class="form-control col-2 offset-sm-2" name="educations">
-                <#assign educations = ["Schools", "Colleges", "Universities"]>
+            <select class="form-control col-2 offset-sm-2" name="educationLevel">
+                <#assign educations = ["School", "Other"]>
                 <#list educations as education>
                     <option value="${education}"> ${education}</option>
                 </#list>

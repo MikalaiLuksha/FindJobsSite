@@ -10,30 +10,24 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Employer {
+public class Administrator {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "firstName")
+    @Column(name = "firstname")
     private String firstName;
 
-    @Column(name = "lastName")
+    @Column(name = "lastname")
     private String lastName;
+
+    @Column(name = "password")
+    private String password;
 
     @Column(name = "email")
     private String email;
 
-    @Column(name = "phone")
-    private String phone;
-
-    @Column(name = "company")
-    private String company;
-
-    @Column(name = "address")
-    private String address;
-
-    @Column(name = "password")
-    private String password;
+    @Column(name = "role")
+    private String role;
 }

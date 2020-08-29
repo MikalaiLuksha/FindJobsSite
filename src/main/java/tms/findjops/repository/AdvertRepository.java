@@ -5,7 +5,7 @@ import tms.findjops.model.Advert;
 
 import java.util.List;
 
-public interface AdvertRepository extends JpaRepository<Advert, Long> {
+public interface AdvertRepository extends JpaRepository <Advert, Long> {
 
-    List <Advert> findAllBy(long id);
+    List <Advert> findAllByEmployerId (long id);
 }

@@ -21,6 +21,7 @@ public class Applicant {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+
     @Column(name = "firstname")
     private String firstName;
 

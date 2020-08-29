@@ -3,13 +3,16 @@ package tms.findjops.controller;
 import lombok.Data;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import tms.findjops.model.*;
 import tms.findjops.service.DTO.ResumeDTO;
 import tms.findjops.service.ResumeService;
 
 import javax.servlet.http.HttpSession;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +47,7 @@ public class ResumeController {
     @RequestMapping(value = "/addWorks", method = RequestMethod.GET)
     public String addWorksG (HttpSession httpSession){
         ResumeDTO resumeDTO = (ResumeDTO) httpSession.getAttribute("resumeDTO");
-        String placeOfWorks = resumeDTO.getPlaceOfWorks();
+        String placeOfWorks = resumeDTO.getWorkExperience();
         if (placeOfWorks.equals("No")){return ("redirect:/resume/addEducation");}
         else {
             return "/resume/addwork";}
@@ -68,11 +71,11 @@ public class ResumeController {
     @RequestMapping(value = "/addEducation", method = RequestMethod.GET)
     public String addEducationG (HttpSession httpSession){
         ResumeDTO resumeDTO = (ResumeDTO) httpSession.getAttribute("resumeDTO");
-        String educations = resumeDTO.getEducations();
-        if (educations.equals(resumeDTO.getEducations())){
+        String educations = resumeDTO.getEducationLevel();
+        if (educations.equals("School")){
             List<Education> listEducations = (List<Education>) httpSession.getAttribute("listEducations");
             List<PlaceOfWork> listPlaceOfWorks = (List<PlaceOfWork>) httpSession.getAttribute("listPlaceOfWorks");
-            listEducations.add(new Education(resumeDTO.getEducations()));
+            listEducations.add(new Education(resumeDTO.getEducationLevel()));
             resumeService.createResume(resumeDTO, listPlaceOfWorks, listEducations);
             return ("redirect:/");}
         else {
@@ -83,8 +86,6 @@ public class ResumeController {
     public String addEducationP (Education education, HttpSession httpSession, String key){
         List<Education> listEducations = (List<Education>) httpSession.getAttribute("listEducations");
         ResumeDTO resumeDTO = (ResumeDTO) httpSession.getAttribute("resumeDTO");
-        String educations = resumeDTO.getEducations();
-        education.setLevel(educations);
         listEducations.add(education);
         httpSession.setAttribute("listEducations", listEducations);
         if (key.equals("1")) {
@@ -106,17 +107,28 @@ public class ResumeController {
         return "/resume/youresume";
     }
 
-    @RequestMapping(value = "/Resume", method = RequestMethod.GET)
-    public String ResumeG(HttpSession httpSession, Model model, long id){
+    @RequestMapping(value = "/resume/{id}", method = RequestMethod.GET)
+    public String ResumeG(Model model, @PathVariable(name = "id") long id){
         Resume resume = resumeService.getResume(id);
         model.addAttribute("resume", resume);
+        Period age = resumeService.getAge(resume);
+        model.addAttribute("age", age);
         return "/resume/resume";
     }
 
-    @RequestMapping(value = "/deleted", method = RequestMethod.POST)
-    public String Deleted(long id){
+    @RequestMapping(value = "/deleted/{id}", method = RequestMethod.POST)
+    public String Deleted(@PathVariable(name = "id") long id){
         resumeService.deleted(id);
         return ("redirect:/resume/youResume");
+    }
+
+    @RequestMapping(value = "/resumeList", method = RequestMethod.GET)
+    public String resumeListG(Model model){
+        List<Resume> allResume = resumeService.getAllResume();
+        model.addAttribute("resumes", allResume);
+        List<Profession> professions = resumeService.getAllProfession();
+        model.addAttribute("profs", professions);
+        return "/resume/resumelist";
     }
 
 }

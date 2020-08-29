@@ -39,7 +39,9 @@
                         <dd class="col-sm-6">${currentApplicant.gender}</dd>
                         <dt class="col-sm-4 offset-sm-1"> Telephone </dt>
                         <dd class="col-sm-6">${currentApplicant.telephone}</dd>
-                        <dt class="col-sm-4 offset-sm-1"> Birthday </dt>
+                        <dt class="col-sm-4 offset-sm-1"> Email </dt>
+                            <dd class="col-sm-6">${currentApplicant.email}</dd>
+                            <dt class="col-sm-4 offset-sm-1"> Birthday </dt>
                         <dd class="col-sm-6">${currentApplicant.birthday.time?string["yyyy-MM-dd"]}</dd>
                         <dt class="col-sm-4 offset-sm-1"> Nationality </dt>
                         <dd class="col-sm-6">
