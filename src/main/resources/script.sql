@@ -1,18 +1,3 @@
-create table "user"
-(
-    id       serial not null
-        constraint user_pk
-            primary key,
-    login    varchar,
-    password varchar
-);
-
-alter table "user"
-    owner to postgres;
-
-create unique index user_id_uindex
-    on "user" (id);
-
 create table nationality
 (
     id   serial not null
@@ -104,7 +89,7 @@ alter table language
 create unique index language_id_uindex
     on language (id);
 
-create table place_of_works
+create table place_of_work
 (
     id                         serial not null
         constraint place_of_works_pk
@@ -116,11 +101,11 @@ create table place_of_works
     workplace_responsibilities varchar
 );
 
-alter table place_of_works
+alter table place_of_work
     owner to postgres;
 
 create unique index place_of_works_id_uindex
-    on place_of_works (id);
+    on place_of_work (id);
 
 create table education
 (
@@ -131,7 +116,7 @@ create table education
     educational_institution varchar,
     faculty                 varchar,
     specialization          varchar,
-    year_of_ending          integer
+    year_of_ending          varchar
 );
 
 alter table education
@@ -149,7 +134,8 @@ create table resume
     about_myself       varchar,
     applicant_id       integer,
     native_language_id integer,
-    profession_id      integer
+    profession_id      integer,
+    work_experience    varchar
 );
 
 alter table resume
@@ -204,5 +190,23 @@ alter table advert
 
 create unique index advert_id_uindex
     on advert (id);
+
+create table administrator
+(
+    id        serial not null
+        constraint administrator_pk
+            primary key,
+    firstname varchar,
+    lastname  varchar,
+    password  varchar,
+    email     varchar,
+    role      varchar
+);
+
+alter table administrator
+    owner to postgres;
+
+create unique index administrator_id_uindex
+    on administrator (id);
 
 

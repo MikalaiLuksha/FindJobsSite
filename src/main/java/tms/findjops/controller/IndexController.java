@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import tms.findjops.model.Advert;
 import tms.findjops.model.Profession;
 import tms.findjops.service.AdvertService;
+import tms.findjops.service.DTO.SortDTO;
 import tms.findjops.service.ResumeService;
 
 import java.util.List;
@@ -23,11 +24,20 @@ public class IndexController {
 
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String main(Model model){
+    public String main(Model model) {
         List<Profession> professions = resumeService.getAllProfession();
         model.addAttribute("profs", professions);
         List<Advert> all = advertService.getAll();
         model.addAttribute("allAdvert", all);
+        return "index";
+    }
+
+    @RequestMapping(value = "/sort", method = RequestMethod.POST)
+    public String sortP(SortDTO sortDTO, Model model) {
+        List<Advert> sortAdvert = advertService.getSortAdvert(sortDTO);
+        List<Profession> professions = resumeService.getAllProfession();
+        model.addAttribute("profs", professions);
+        model.addAttribute("allAdvert", sortAdvert);
         return "index";
     }
 

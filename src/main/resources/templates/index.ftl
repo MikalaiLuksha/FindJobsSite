@@ -71,18 +71,19 @@
     </ul>
 </nav>
 
+<form action="/sort" method="post">
 <div class="d-flex justify-content-start mb-n3">
     <div class="p-2 bd-highlight mb-0">
         <dt class="text-light"><h4>Sorting</h4></dt>
     </div>
     <div class="p-2 bd-highlight mb-0">
         <div class="dropdown">
-            <button class="btn btn-light dropdown-toggle" type="button" id="appl" data-toggle="dropdown">
+            <button class="btn btn-light dropdown-toggle" type="button" id="profession1" data-toggle="dropdown">
                 Profession <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" style="width: 250px;">
                 <#list profs as prof>
-                    <li class="dropdown-input offset-sm-1"><label><input type="checkbox" name="foreignLanguages"
+                    <li class="dropdown-input offset-sm-1"><label><input type="checkbox" name="profSort"
                                                                          value="${prof.id}"> ${prof.name}</label></li>
                 </#list>
             </ul>
@@ -90,32 +91,31 @@
     </div>
     <div class="p-2 bd-highlight mb-0">
         <div class="dropdown">
-            <button class="btn btn-light dropdown-toggle" type="button" id="appl" data-toggle="dropdown">
+            <button class="btn btn-light dropdown-toggle" type="button" id="salary1" data-toggle="dropdown">
                 Salary <span class="caret"></span>
             </button>
             <ul class="dropdown-menu">
                 <#assign periods = ["less 1000", "1000 - 1500", "1500 - 2000", "more 2000"]>
                 <#list periods as period>
-                    <li class="dropdown-input offset-sm-1"><label><input type="radio" name="foreignLanguages"
+                    <li class="dropdown-input offset-sm-1"><label><input type="radio" name="salaryPeriod"
                                                                          value="${period}"> ${period}</label></li>
                 </#list>
             </ul>
         </div>
     </div>
     <div class="p-2 bd-highlight mb-0">
-        <select class="form-control" name="educationLevel">
-            <#assign sors = ["salary increase", "salary decrease"]>
+        <select class="form-control" name="salarySort">
+            <#assign sors = ["salary increase", "salary decrease", "no"]>
             <#list sors as sor>
                 <option value="${sor}"> ${sor}</option>
             </#list>
         </select>
     </div>
     <div class="p-2 bd-highlight mb-0">
-        <form action="" method="post">
             <button type="submit" class="btn btn-primary">Accept</button>
-        </form>
     </div>
 </div>
+</form>
 
 <#if allAdvert??>
     <#list allAdvert as advert>
