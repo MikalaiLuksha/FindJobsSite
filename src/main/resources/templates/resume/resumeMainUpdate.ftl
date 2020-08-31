@@ -12,45 +12,12 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="/">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Update information</a>
-                </li>
             </ul>
         </nav>
     </head>
 </head>
 <body>
 
-<div class="card mb-10 offset-sm-2 mt-4" style="max-width: 540px; background-color: #e6e4f3">
-    <div class="row no-gutters">
-        <div class="col-md-4">
-            <img src="https://c7.hotpng.com/preview/895/85/169/computer-icons-businessperson-clip-art-business-woman.jpg" class="card-img" alt="...">
-        </div>
-        <div class="col-md-8">
-            <div class="card-body">
-                <h5 class="card-title offset-sm-1">Profile</h5>
-                <dl class="row">
-                    <dt class="col-sm-4 offset-sm-1"> First Name</dt>
-                    <dd class="col-sm-6">${currentApplicant.firstName}</dd>
-                    <dt class="col-sm-4 offset-sm-1"> Last Name</dt>
-                    <dd class="col-sm-6">${currentApplicant.lastName}</dd>
-                    <dt class="col-sm-4 offset-sm-1"> Gender </dt>
-                    <dd class="col-sm-6">${currentApplicant.gender}</dd>
-                    <dt class="col-sm-4 offset-sm-1"> Telephone </dt>
-                    <dd class="col-sm-6">${currentApplicant.telephone}</dd>
-                    <dt class="col-sm-4 offset-sm-1"> Birthday </dt>
-                    <dd class="col-sm-6">${currentApplicant.birthday.time?string["yyyy-MM-dd"]}</dd>
-                    <dt class="col-sm-4 offset-sm-1"> Nationality </dt>
-                    <dd class="col-sm-6">
-                        <#list currentApplicant.nationality as nati>
-                        <li>${nati.name}
-                            </#list>
-                    </dd>
-                </dl>
-            </div>
-        </div>
-    </div>
-</div>
 
 <div class="tab-pane fade show active" id="applicant" role="tabpanel" aria-labelledby="home-tab">
     <form action="/resume/addResume" method="post">
@@ -58,19 +25,25 @@
         <div class="form-group text-light">
             <label for="applicant1" class="offset-sm-2"> Profession </label>
             <select class="form-control col-2 offset-sm-2" name="profession">
-                <#list professions as profession>
-                    <option value="${profession.id}"> ${profession.name}</option>
+                <#list professions as prof>
+                    <#if resume.profession.id == prof.id>
+                    <option value="${prof.id}" selected> ${prof.name}</option>
+                        <#else>
+                            <option value="${prof.id}"> ${prof.name}</option>
+                    </#if>
                 </#list>
             </select>
         </div>
         <div class="form-group text-light">
             <label for="employer2" class="offset-sm-2">Salary</label>
-            <input type="text" class="form-control col-4 offset-sm-2" id="employer2" name="salary">
+            <input type="text" class="form-control col-4 offset-sm-2" id="employer2" name="salary" value="${resume.salary}">
         </div>
 
         <div class="form-group text-light">
             <label for="employer3" class="offset-sm-2">About myself</label>
-            <textarea class="form-control col-4 offset-sm-2" id="employer3" name="aboutMyself" rows="3"></textarea>
+            <textarea class="form-control col-4 offset-sm-2" id="employer3" name="aboutMyself" rows="3">
+                ${resume.aboutMyself}
+            </textarea>
         </div>
         <div class="form-group text-light">
             <label for="applicant1" class="offset-sm-2"> Native Language </label>

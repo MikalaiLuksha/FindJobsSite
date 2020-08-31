@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import tms.findjops.model.*;
 import tms.findjops.service.DTO.ResumeDTO;
 import tms.findjops.service.ResumeService;
@@ -29,7 +28,7 @@ public class ResumeController {
         List<Profession> allProfession = resumeService.getAllProfession();
         model.addAttribute("languages", allLanguage);
         model.addAttribute("professions", allProfession);
-        return "/resume/addresume";
+        return "/resume/addResume";
     }
 
     @RequestMapping(value = "/addResume", method = RequestMethod.POST)
@@ -50,7 +49,7 @@ public class ResumeController {
         String placeOfWorks = resumeDTO.getWorkExperience();
         if (placeOfWorks.equals("No")){return ("redirect:/resume/addEducation");}
         else {
-            return "/resume/addwork";}
+            return "/resume/addWork";}
     }
 
     @RequestMapping(value = "/addWorks", method = RequestMethod.POST)
@@ -59,7 +58,7 @@ public class ResumeController {
         listPlaceOfWorks.add(placeOfWork);
         httpSession.setAttribute("listPlaceOfWorks", listPlaceOfWorks);
         if (key.equals("1")) {
-            return "/resume/addwork";
+            return "/resume/addWork";
         }
         if (key.equals("2")) {
             return "redirect:/resume/addEducation";
@@ -79,7 +78,7 @@ public class ResumeController {
             resumeService.createResume(resumeDTO, listPlaceOfWorks, listEducations);
             return ("redirect:/");}
         else {
-            return "/resume/addeducation";}
+            return "/resume/addEducation";}
     }
 
     @RequestMapping(value = "/addEducation", method = RequestMethod.POST)
@@ -89,14 +88,14 @@ public class ResumeController {
         listEducations.add(education);
         httpSession.setAttribute("listEducations", listEducations);
         if (key.equals("1")) {
-            return "/resume/addeducation";
+            return "/resume/addEducation";
         }
         if (key.equals("2")) {
             List<PlaceOfWork> listPlaceOfWorks = (List<PlaceOfWork>) httpSession.getAttribute("listPlaceOfWorks");
             resumeService.createResume(resumeDTO, listPlaceOfWorks, listEducations);
-            return "index";
+            return "redirect:/";
         }
-        return "/";
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/youResume", method = RequestMethod.GET)
@@ -104,15 +103,19 @@ public class ResumeController {
         Applicant currentApplicant = (Applicant) httpSession.getAttribute("currentApplicant");
         List<Resume> allApplicantResume = resumeService.getAllApplicantResume(currentApplicant.getId());
         model.addAttribute("allApplicantResume", allApplicantResume);
-        return "/resume/youresume";
+        return "/resume/youResume";
     }
 
     @RequestMapping(value = "/resume/{id}", method = RequestMethod.GET)
-    public String ResumeG(Model model, @PathVariable(name = "id") long id){
+    public String ResumeG(Model model, @PathVariable(name = "id") long id, HttpSession httpSession){
         Resume resume = resumeService.getResume(id);
         model.addAttribute("resume", resume);
         Period age = resumeService.getAge(resume);
         model.addAttribute("age", age);
+        Applicant currentApplicant = (Applicant) httpSession.getAttribute("currentApplicant");
+        if (currentApplicant.getId() == resume.getApplicant().getId()){
+            model.addAttribute("checkUpd", "yes");
+        }
         return "/resume/resume";
     }
 
@@ -128,7 +131,31 @@ public class ResumeController {
         model.addAttribute("resumes", allResume);
         List<Profession> professions = resumeService.getAllProfession();
         model.addAttribute("profs", professions);
-        return "/resume/resumelist";
+        return "/resume/resumeList";
     }
+
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
+    public String updateG(Model model, @PathVariable(name = "id") long id){
+        Resume resume = resumeService.getResume(id);
+        model.addAttribute("resume", resume);
+        Period age = resumeService.getAge(resume);
+        model.addAttribute("age", age);
+        return "/resume/updateResume";
+    }
+
+    @RequestMapping(value = "/updateMain/{id}", method = RequestMethod.GET)
+    public String updateMainP(@PathVariable(name = "id") long id, Model model){
+        Resume resume = resumeService.getResume(id);
+        model.addAttribute("resume", resume);
+        List<Language> allLanguage = resumeService.getAllLanguage();
+        List<Profession> allProfession = resumeService.getAllProfession();
+        model.addAttribute("languages", allLanguage);
+        model.addAttribute("professions", allProfession);
+        return "/resume/resumeMainUpdate";
+    }
+
+
+
+
 
 }

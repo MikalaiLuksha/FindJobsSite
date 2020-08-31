@@ -17,11 +17,6 @@
             <li class="nav-item">
                 <a class="nav-link active" href="/">Home</a>
             </li>
-           <#if checkUpd??>
-            <li class="nav-item">
-                <a class="nav-link" href="/resume/update/${resume.id}">Update resume</a>
-            </li>
-           </#if>
         </ul>
     </nav>
 </head>
@@ -33,7 +28,7 @@
         <h5 class="card-title">${resume.applicant.firstName} ${resume.applicant.lastName} </h5>
         <p class="card-text">
         <dl class="row">
-               <dt class="col-sm-2"> Age</dt>
+            <dt class="col-sm-2"> Age</dt>
             <dd class="col-sm-10">${age.years}</dd>
             <dt class="col-sm-2"> Gender</dt>
             <dd class="col-sm-10">${resume.applicant.gender}</dd>
@@ -49,11 +44,12 @@
             <dd class="col-sm-10">${resume.applicant.gender}</dd>
             <dt class="col-sm-2 text-primary"><h4>Main information </h4></dt>
             <dd class="col-sm-10"></dd>
+
             <dt class="col-sm-2"> Profession</dt>
             <dd class="col-sm-10">${resume.profession.name}</dd>
             <dt class="col-sm-2"> Salary</dt>
             <dd class="col-sm-10">${resume.salary}</dd>
-             <dt class="col-sm-2"> Native language</dt>
+            <dt class="col-sm-2"> Native language</dt>
             <dd class="col-sm-10">${resume.nativeLanguage.name}</dd>
             <dt class="col-sm-2"> Native language</dt>
             <dd class="col-sm-10">
@@ -63,33 +59,40 @@
             </dd>
             <dt class="col-sm-2"> About myself</dt>
             <dd class="col-sm-10">${resume.aboutMyself}</dd>
+            <dt class="col-sm-12">
+             <a href="/resume/updateMain/${resume.id}" type="submit" class="btn btn-primary">Update main information</a>
             <dt class="col-sm-2 text-primary"><h4>Educations </h4></dt>
             <dd class="col-sm-10"></dd>
             <#list resume.educations as ed>
-                <dt class="col-sm-2 text-primary">------------------</dt>
-                <dd class="col-sm-10"></dd>
-                <dt class="col-sm-2"> Level</dt>
-                <dd class="col-sm-10">
-                    ${ed.level}
-                </dd>
-                <#if ed.educationalInstitution??>
-                    <dt class="col-sm-2">Institution</dt>
-                    <dd class="col-sm-10">${ed.educationalInstitution}</dd>
-                    <dt class="col-sm-2">Faculty</dt>
-                    <dd class="col-sm-10">${ed.faculty}</dd>
-                    <dt class="col-sm-2">Specialization</dt>
-                    <dd class="col-sm-10">${ed.specialization}</dd>
-                    <dt class="col-sm-2">Year of ending</dt>
-                    <dd class="col-sm-10">${ed.yearOfEnding}</dd>
-                </#if>
-                <dt class="col-sm-2 text-primary">------------------</dt>
-                <dd class="col-sm-10">
-            </#list>
+            <dt class="col-sm-2 text-primary">------------------</dt>
+            <dd class="col-sm-10"></dd>
+            <dt class="col-sm-2"> Level</dt>
+            <dd class="col-sm-10">
+                ${ed.level}
+            </dd>
+            <#if ed.educationalInstitution??>
+                <dt class="col-sm-2">Institution</dt>
+                <dd class="col-sm-10">${ed.educationalInstitution}</dd>
+                <dt class="col-sm-2">Faculty</dt>
+                <dd class="col-sm-10">${ed.faculty}</dd>
+                <dt class="col-sm-2">Specialization</dt>
+                <dd class="col-sm-10">${ed.specialization}</dd>
+                <dt class="col-sm-2">Year of ending</dt>
+                <dd class="col-sm-10">${ed.yearOfEnding}</dd>
+            </#if>
+            <dt class="col-sm-2 text-primary">---------------------</dt>
+            <dd class="col-sm-10">
+                <dt class="col-sm-12">
+                <button type="submit" formaction="/resume/updateInst/${ed.id}"
+                        class="btn btn-primary offset-sm-2" formmethod="post"> Update education
+                </button>
+            </dt>
+                </#list>
             </dd>
             <dt class="col-sm-2 text-primary"><h4> Work experience </h4></dt>
             <dd class="col-sm-10"></dd>
             <#list resume.placeOfWorks as wr>
-                <dt class="col-sm-2 text-primary">------------------</dt>
+                <dt class="col-sm-2 text-primary">---------------------</dt>
                 <dd class="col-sm-10"></dd>
                 <#if wr.organization??>
                     <dt class="col-sm-2">Organization</dt>
@@ -103,16 +106,24 @@
                     <dt class="col-sm-2">Workplace responsibilities</dt>
                     <dd class="col-sm-10">${wr.workplaceResponsibilities}</dd>
                 </#if>
-                <dt class="col-sm-2 text-primary"> ------------------</dt>
+                <dt class="col-sm-2 text-primary"> ---------------------</dt>
                 <dd class="col-sm-10"></dd>
+                <dt class="col-sm-12">
+                <button type="submit" formaction="/resume/updateExperience/${wr.id}"
+                        class="btn btn-primary offset-sm-2" formmethod="post"> Update work experience
+                </button>
+                </dt>
             </#list>
             <#if resume.workExperience == "No">
-            <dt class="col-sm-2">Work experience</dt>
-            <dd class="col-sm-10">${resume.workExperience}</dd>
+                <dt class="col-sm-2">Work experience</dt>
+                <dd class="col-sm-10">${resume.workExperience}</dd>
+            <dt class="col-sm-12">
+                <button type="submit" formaction="/resume/updateExperience/${wr.id}"
+                        class="btn btn-primary offset-sm-2" formmethod="post"> Update work experience
+                </button>
             </#if>
         </dl>
-        <a href="#" class="btn btn-primary">Button</a>
-    </div>
+       </div>
 </div>
 
 

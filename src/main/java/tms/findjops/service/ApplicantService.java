@@ -50,6 +50,19 @@ public class ApplicantService {
         return nationalityRepository.findAll();
     }
 
+    public Applicant updateApplicant (Applicant applicant, long id){
+        Applicant applicant1 = applicantRepository.getOne(id);
+        applicant1.setFirstName(applicant.getFirstName());
+        applicant1.setLastName(applicant.getLastName());
+        applicant1.setPassword(applicant.getPassword());
+        applicant1.setEmail(applicant.getEmail());
+        applicant1.setBirthday(applicant.getBirthday());
+        applicant1.setNationality(applicant.getNationality());
+        applicant1.setGender(applicant.getGender());
+        applicant1.setTelephone(applicant.getTelephone());
+        applicantRepository.save(applicant1);
+        return applicant1;
+    }
 
 }
 

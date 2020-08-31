@@ -29,7 +29,7 @@ public class AdvertController {
     public String addAdvertG(Model model){
        List<Profession> allProfession = resumeService.getAllProfession();
        model.addAttribute("professions", allProfession);
-        return "/advert/addadvert";
+        return "/advert/addAdvert";
     }
 
     @RequestMapping(value = "/addAdvert", method = RequestMethod.POST)
@@ -49,7 +49,7 @@ public class AdvertController {
        Employer currentEmployer = (Employer) httpSession.getAttribute("currentEmployer");
         List<Advert> allAdvertById = advertService.getAllAdvertById(currentEmployer.getId());
         model.addAttribute("adverts", allAdvertById);
-        return "/advert/youadvert";
+        return "/advert/youAdvert";
     }
 
     @RequestMapping(value = "/advert/{id}", method = RequestMethod.GET)
@@ -62,6 +62,6 @@ public class AdvertController {
     @RequestMapping(value = "/deleted/{id}", method = RequestMethod.POST)
     public String deletedP (@PathVariable(name = "id") long id){
        advertService.deleted(id);
-        return "/advert/youadvert";
+        return "/advert/youAdvert";
     }
 }

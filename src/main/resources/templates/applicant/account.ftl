@@ -14,7 +14,7 @@
             <a class="nav-link active" href="/">Home</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Update information</a>
+            <a class="nav-link" href="/user/applicant/account/update">Update information</a>
         </li>
         </ul>
     </nav>
