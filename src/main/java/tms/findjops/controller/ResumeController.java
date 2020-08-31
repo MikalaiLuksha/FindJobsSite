@@ -144,17 +144,49 @@ public class ResumeController {
     }
 
     @RequestMapping(value = "/updateMain/{id}", method = RequestMethod.GET)
-    public String updateMainP(@PathVariable(name = "id") long id, Model model){
+    public String updateMainG(@PathVariable(name = "id") long id, Model model){
         Resume resume = resumeService.getResume(id);
         model.addAttribute("resume", resume);
         List<Language> allLanguage = resumeService.getAllLanguage();
-        List<Profession> allProfession = resumeService.getAllProfession();
+          List<Profession> allProfession = resumeService.getAllProfession();
         model.addAttribute("languages", allLanguage);
         model.addAttribute("professions", allProfession);
         return "/resume/resumeMainUpdate";
     }
 
+    @RequestMapping(value = "/updateMain/{id}", method = RequestMethod.POST)
+    public String updateMainP(@PathVariable(name = "id") long id,  ResumeDTO resumeDTO){
+        resumeService.updateMain(resumeDTO, id);
+        return ("redirect:/resume/resume/"+id);
+    }
 
+    @RequestMapping(value = "/updateInst", method = RequestMethod.GET)
+    public String updateInstG(long id, long idr, Model model){
+        Education education = resumeService.getEducation(id);
+        model.addAttribute("education", education);
+        model.addAttribute("idr", idr);
+        return "/resume/resumeInstUpdate";
+    }
+
+    @RequestMapping(value = "/updateInst", method = RequestMethod.POST)
+    public String updateInstP(long id, long idr, Education education){
+        resumeService.updateEducation(education, id);
+        return ("redirect:/resume/resume/"+idr);
+    }
+
+    @RequestMapping(value = "/updateExperience", method = RequestMethod.GET)
+    public String updateExperienceG(long id, long idr, Model model){
+        PlaceOfWork pow = resumeService.getPOW(id);
+        model.addAttribute("pow", pow);
+        model.addAttribute("idr", idr);
+        return "/resume/resumeExperienceUpdate";
+    }
+
+    @RequestMapping(value = "/updateExperience", method = RequestMethod.POST)
+    public String updateExperienceP(long id, long idr, PlaceOfWork placeOfWork){
+        resumeService.updatePOW(placeOfWork, id);
+        return ("redirect:/resume/resume/"+idr);
+    }
 
 
 

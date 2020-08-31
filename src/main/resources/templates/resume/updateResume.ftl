@@ -83,9 +83,7 @@
             <dt class="col-sm-2 text-primary">---------------------</dt>
             <dd class="col-sm-10">
                 <dt class="col-sm-12">
-                <button type="submit" formaction="/resume/updateInst/${ed.id}"
-                        class="btn btn-primary offset-sm-2" formmethod="post"> Update education
-                </button>
+                <a href="/resume/updateInst?id=${ed.id}&idr=${resume.id}" type="submit" class="btn btn-primary">Update education</a>
             </dt>
                 </#list>
             </dd>
@@ -109,18 +107,14 @@
                 <dt class="col-sm-2 text-primary"> ---------------------</dt>
                 <dd class="col-sm-10"></dd>
                 <dt class="col-sm-12">
-                <button type="submit" formaction="/resume/updateExperience/${wr.id}"
-                        class="btn btn-primary offset-sm-2" formmethod="post"> Update work experience
-                </button>
+                    <a href="/resume/updateExperience?id=${wr.id}&idr=${resume.id}" type="submit" class="btn btn-primary">Update work experience</a>
                 </dt>
             </#list>
             <#if resume.workExperience == "No">
                 <dt class="col-sm-2">Work experience</dt>
                 <dd class="col-sm-10">${resume.workExperience}</dd>
             <dt class="col-sm-12">
-                <button type="submit" formaction="/resume/updateExperience/${wr.id}"
-                        class="btn btn-primary offset-sm-2" formmethod="post"> Update work experience
-                </button>
+                <a href="/resume/updateExperience?id=${wr.id}&idr=${resume.id}" type="submit" class="btn btn-primary">Update work experience</a>
             </#if>
         </dl>
        </div>

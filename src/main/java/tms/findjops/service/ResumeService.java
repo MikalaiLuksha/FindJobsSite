@@ -10,7 +10,6 @@ import tms.findjops.service.DTO.ResumeDTO;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.List;
 
@@ -73,4 +72,43 @@ public class ResumeService {
         LocalDate startDate = LocalDate.now();
         return Period.between(endDate, startDate);
     }
+
+    public void updateMain(ResumeDTO resumeDTO, long id){
+        Resume one = resumeRepository.getOne(id);
+        one.setProfession(resumeDTO.getProfession());
+        one.setSalary(resumeDTO.getSalary());
+        one.setNativeLanguage(resumeDTO.getNativeLanguage());
+        one.setForeignLanguages(resumeDTO.getForeignLanguages());
+        one.setAboutMyself(resumeDTO.getAboutMyself());
+        resumeRepository.save(one);
+    }
+
+    public Education getEducation (long id){
+        return educationRepository.getOne(id);
+    }
+
+    public void updateEducation (Education education, long id){
+        Education one = educationRepository.getOne(id);
+        one.setLevel(education.getLevel());
+        one.setEducationalInstitution(education.getEducationalInstitution());
+        one.setFaculty(education.getFaculty());
+        one.setSpecialization(education.getSpecialization());
+        one.setYearOfEnding(education.getYearOfEnding());
+        educationRepository.save(one);
+    }
+
+    public PlaceOfWork getPOW (long id){
+        return placeOfWorksRepository.getOne(id);
+    }
+
+    public void updatePOW(PlaceOfWork placeOfWork, long id){
+        PlaceOfWork one = placeOfWorksRepository.getOne(id);
+        one.setBeginningOfWork(placeOfWork.getBeginningOfWork());
+        one.setEndOfWork(placeOfWork.getEndOfWork());
+        one.setOrganization(placeOfWork.getOrganization());
+        one.setPosition(placeOfWork.getPosition());
+        one.setWorkplaceResponsibilities(placeOfWork.getWorkplaceResponsibilities());
+        placeOfWorksRepository.save(one);
+    }
+
 }

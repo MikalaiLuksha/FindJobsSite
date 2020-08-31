@@ -55,7 +55,7 @@
             <dd class="col-sm-10">${resume.salary}</dd>
              <dt class="col-sm-2"> Native language</dt>
             <dd class="col-sm-10">${resume.nativeLanguage.name}</dd>
-            <dt class="col-sm-2"> Native language</dt>
+            <dt class="col-sm-2"> Foreign language</dt>
             <dd class="col-sm-10">
                 <#list resume.foreignLanguages as lg>
                 <li>${lg.name}

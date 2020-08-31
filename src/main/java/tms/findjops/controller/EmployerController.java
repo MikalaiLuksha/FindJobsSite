@@ -3,13 +3,17 @@ package tms.findjops.controller;
 
 import lombok.Data;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import tms.findjops.model.Employer;
+import tms.findjops.model.Gender;
+import tms.findjops.model.Nationality;
 import tms.findjops.service.ApplicantService;
 import tms.findjops.service.EmployerService;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Data
 @Controller
@@ -33,5 +37,10 @@ public class EmployerController {
     @RequestMapping(value = "/account", method = RequestMethod.GET)
     public String accountG (){
         return "/employer/account";
+    }
+
+    @RequestMapping(value = "/account/update", method = RequestMethod.GET)
+    public String updateAccountG (Model model){
+        return "/employer/updateAccount";
     }
 }

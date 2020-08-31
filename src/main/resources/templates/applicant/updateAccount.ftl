@@ -11,7 +11,6 @@
 <body>
 
 <h4 class="mt-5"></h4>
-
         <form action="/user/applicant/account/update" method="post">
             <h6 class="mt-4"></h6>
             <div class="form-group text-light">

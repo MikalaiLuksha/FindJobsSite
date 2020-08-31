@@ -20,7 +20,7 @@
 
 
 <div class="tab-pane fade show active" id="applicant" role="tabpanel" aria-labelledby="home-tab">
-    <form action="/resume/addResume" method="post">
+    <form action="/resume/updateMain/${resume.id}" method="post">
         <h6 class="mt-4"></h6>
         <div class="form-group text-light">
             <label for="applicant1" class="offset-sm-2"> Profession </label>
@@ -41,15 +41,17 @@
 
         <div class="form-group text-light">
             <label for="employer3" class="offset-sm-2">About myself</label>
-            <textarea class="form-control col-4 offset-sm-2" id="employer3" name="aboutMyself" rows="3">
-                ${resume.aboutMyself}
-            </textarea>
+            <textarea class="form-control col-4 offset-sm-2" id="employer3" name="aboutMyself" rows="3">${resume.aboutMyself}</textarea>
         </div>
         <div class="form-group text-light">
             <label for="applicant1" class="offset-sm-2"> Native Language </label>
             <select class="form-control col-2 offset-sm-2" name="nativeLanguage">
                 <#list languages as language>
-                    <option value="${language.id}"> ${language.name}</option>
+                    <#if resume.nativeLanguage.name == language.name>
+                    <option value="${language.id}" selected> ${language.name}</option>
+                        <#else>
+                            <option value="${language.id}"> ${language.name}</option>
+                    </#if>
                 </#list>
             </select>
         </div>
@@ -61,29 +63,19 @@
             </button><br>
             <ul class="dropdown-menu">
                 <#list languages as language>
-                    <li class="dropdown-input offset-sm-1"><label><input type="checkbox" name="foreignLanguages" value="${language.id}"> ${language.name}</label></li>
+                    <#assign x = 0 >
+                    <#list resume.foreignLanguages as fl>
+                        <#if fl.name == language.name>
+                            <#assign x = 1 >
+                             </#if>
+                    </#list>
+                        <#if x = 1>
+                        <li class="dropdown-input offset-sm-1"><label><input type="checkbox" name="foreignLanguages" value="${language.id}" checked> ${language.name}</label></li>
+                       <#else>
+                           <li class="dropdown-input offset-sm-1"><label><input type="checkbox" name="foreignLanguages" value="${language.id}"> ${language.name}</label></li>
+                        </#if>
                 </#list>
             </ul>
-        </div>
-
-        <div class="form-group text-light">
-            <label for="applicant1" class="offset-sm-2"> Work experience </label>
-            <select class="form-control col-2 offset-sm-2" name="workExperience">
-                <#assign works = ["Yes", "No"]>
-                <#list works as work>
-                    <option value="${work}"> ${work}</option>
-                </#list>
-            </select>
-        </div>
-
-        <div class="form-group text-light">
-            <label for="applicant1" class="offset-sm-2"> Education </label>
-            <select class="form-control col-2 offset-sm-2" name="educationLevel">
-                <#assign educations = ["School", "Other"]>
-                <#list educations as education>
-                    <option value="${education}"> ${education}</option>
-                </#list>
-            </select>
         </div>
         <button type="submit" class="btn btn-primary offset-sm-2">Submit</button>
     </form>
