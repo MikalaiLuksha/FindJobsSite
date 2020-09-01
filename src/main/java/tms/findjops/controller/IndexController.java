@@ -1,9 +1,12 @@
 package tms.findjops.controller;
 
 import lombok.Data;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import tms.findjops.model.Advert;
@@ -23,22 +26,23 @@ public class IndexController {
     private final ResumeService resumeService;
 
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String main(Model model) {
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public String main(Model model, @PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable) {
         List<Profession> professions = resumeService.getAllProfession();
         model.addAttribute("profs", professions);
-        List<Advert> all = advertService.getAll();
-        model.addAttribute("allAdvert", all);
-        return "index";
+        Page <Advert> page = advertService.getAll(pageable);
+        model.addAttribute("page", page);
+        model.addAttribute("url", "/");
+        return "/index";
     }
 
-    @RequestMapping(value = "/sort", method = RequestMethod.POST)
+    @RequestMapping(value = "sort", method = RequestMethod.POST)
     public String sortP(SortDTO sortDTO, Model model) {
         List<Advert> sortAdvert = advertService.getSortAdvert(sortDTO);
         List<Profession> professions = resumeService.getAllProfession();
         model.addAttribute("profs", professions);
         model.addAttribute("allAdvert", sortAdvert);
-        return "index";
+        return "/index";
     }
 
 

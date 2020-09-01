@@ -2,11 +2,15 @@ package tms.findjops.service;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import tms.findjops.model.Advert;
 import tms.findjops.model.Profession;
 import tms.findjops.repository.AdvertRepository;
 import tms.findjops.service.DTO.SortDTO;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,8 +31,8 @@ public class AdvertService {
         return advertRepository.findAllByEmployerId(id);
     }
 
-    public List<Advert> getAll() {
-        return advertRepository.findAll();
+    public Page<Advert> getAll(Pageable pageable) {
+        return advertRepository.findAll(pageable);
     }
 
     public Advert getAdvertById(long id) {

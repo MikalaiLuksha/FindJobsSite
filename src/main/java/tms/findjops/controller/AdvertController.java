@@ -41,7 +41,7 @@ public class AdvertController {
         Employer currentEmployer = (Employer) httpSession.getAttribute("currentEmployer");
         advert.setEmployer(currentEmployer);
         advertService.createAdvert(advert);
-        return "index";
+        return ("redirect:/");
     }
 
     @RequestMapping(value = "/youAdvert", method = RequestMethod.GET)
