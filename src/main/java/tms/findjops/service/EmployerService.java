@@ -43,4 +43,17 @@ public class EmployerService {
     public Language getLanguage (){
         return new Language();
     }
+
+    public Employer updateEmployer (Employer employer, long id){
+        Employer one = employerRepository.getOne(id);
+        one.setAddress(employer.getAddress());
+        one.setCompany(employer.getCompany());
+        one.setEmail(employer.getEmail());
+        one.setFirstName(employer.getFirstName());
+        one.setLastName(employer.getLastName());
+        one.setPassword(employer.getPassword());
+        one.setPhone(employer.getPhone());
+        employerRepository.save(one);
+        return one;
+    }
 }

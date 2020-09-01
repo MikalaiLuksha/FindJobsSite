@@ -43,4 +43,12 @@ public class EmployerController {
     public String updateAccountG (Model model){
         return "/employer/updateAccount";
     }
+
+    @RequestMapping(value = "/account/update", method = RequestMethod.POST)
+    public String updateAccountP (Employer employer, HttpSession httpSession){
+        Employer currentEmployer = (Employer) httpSession.getAttribute("currentEmployer");
+        Employer employer1 = employerService.updateEmployer(employer, currentEmployer.getId());
+        httpSession.setAttribute("currentEmployer", employer1);
+        return "/employer/account";
+    }
 }

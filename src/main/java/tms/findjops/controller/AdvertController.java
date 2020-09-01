@@ -41,7 +41,7 @@ public class AdvertController {
         Employer currentEmployer = (Employer) httpSession.getAttribute("currentEmployer");
         advert.setEmployer(currentEmployer);
         advertService.createAdvert(advert);
-        return "index";
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/youAdvert", method = RequestMethod.GET)
@@ -53,9 +53,13 @@ public class AdvertController {
     }
 
     @RequestMapping(value = "/advert/{id}", method = RequestMethod.GET)
-    public String advertG (Model model, @PathVariable(name = "id") long id){
+    public String advertG (Model model, @PathVariable(name = "id") long id, HttpSession httpSession){
         Advert advertById = advertService.getAdvertById(id);
         model.addAttribute("advert", advertById);
+        Employer currentEmployer = (Employer) httpSession.getAttribute("currentEmployer");
+        if (currentEmployer.getId()==advertById.getId()){
+            model.addAttribute("checkEmp", "yes");
+        }
         return "/advert/advert";
     }
 
@@ -63,5 +67,20 @@ public class AdvertController {
     public String deletedP (@PathVariable(name = "id") long id){
        advertService.deleted(id);
         return "/advert/youAdvert";
+    }
+
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
+    public String updateAdvertG(Model model, @PathVariable(name = "id") long id){
+        List<Profession> allProfession = resumeService.getAllProfession();
+        Advert advert = advertService.getAdvertById(id);
+        model.addAttribute("advert", advert);
+        model.addAttribute("professions", allProfession);
+       return "/advert/advertUpdate";
+    }
+
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
+    public String updateAdvertP(Advert advert, @PathVariable(name = "id") long id){
+        advertService.updateAdvert(advert, id);
+       return "redirect:/advert/advert/"+id;
     }
 }

@@ -10,6 +10,7 @@ import tms.findjops.service.DTO.ResumeDTO;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -45,6 +46,7 @@ public class ResumeService {
         Resume resume = modelMapper.map(resumeDTO, Resume.class);
         resume.setPlaceOfWorks(workList);
         resume.setEducations(educationList);
+        resume.setStatus(Status.unchecked);
         return resume;
     }
 
@@ -109,6 +111,19 @@ public class ResumeService {
         one.setPosition(placeOfWork.getPosition());
         one.setWorkplaceResponsibilities(placeOfWork.getWorkplaceResponsibilities());
         placeOfWorksRepository.save(one);
+    }
+
+    public List<Resume> sortStatus (Status status){
+        List<Resume> allResume = getAllResume();
+        List<Resume> sortList = new ArrayList<>();
+        for ( Resume re: allResume)
+        {
+            if (re.getStatus() == status){
+                sortList.add(re);
+            }
+
+        }
+        return sortList;
     }
 
 }

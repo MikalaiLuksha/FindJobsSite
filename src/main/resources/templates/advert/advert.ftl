@@ -12,9 +12,11 @@
             <li class="nav-item">
                 <a class="nav-link active" href="/">Home</a>
             </li>
+            <#if checkEmp??>
             <li class="nav-item">
-                <a class="nav-link" href="#">###########</a>
+                <a class="nav-link" href="/advert/update/${advert.id}">Update advert</a>
             </li>
+            </#if>
         </ul>
     </nav>
 </head>
@@ -37,20 +39,8 @@
             <dd class="col-sm-10"> ${advert.terms}</dd>
             <dt class="col-sm-2"> Add date</dt>
             <dd class="col-sm-10">${advert.addDate.time?string["yyyy-MM-dd"]}</dd>
-        </p>
-        <div class="d-flex justify-content-start mb-n3">
-            <div class="p-2 bd-highlight mb-0">
-                <form action="/resume/resume?id=${advert.id}" method="get">
-                    <button type="submit" class="btn btn-primary">Open</button>
-                </form>
-            </div>
-            <div class="p-2 bd-highlight mb-0">
-                <form action="/resume/deleted?id=${advert.id}" method="post">
-                    <button type="submit" class="btn btn-primary">Deleted</button>
-                </form>
-            </div>
-        </div>
-    </div>
+        </dl>
+          </div>
 </div>
 
 

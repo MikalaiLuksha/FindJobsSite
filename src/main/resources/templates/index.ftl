@@ -56,7 +56,7 @@
                 <a class="nav-link" href="/user/applicant/account">User list</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/advert/addAdvert">Resume list</a>
+                <a class="nav-link" href="/administrator/resumeList">Resume list</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/advert/youAdvert">Advert list</a>

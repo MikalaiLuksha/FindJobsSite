@@ -117,4 +117,15 @@ public class AdvertService {
                 return null;
         }
     }
+
+    public void updateAdvert (Advert advert, long id){
+        Advert one = advertRepository.getOne(id);
+        one.setProfession(advert.getProfession());
+        one.setRequirements(advert.getRequirements());
+        one.setResponsibility(advert.getResponsibility());
+        one.setSalary(advert.getSalary());
+        one.setTerms(advert.getTerms());
+        advertRepository.save(one);
+
+    }
 }

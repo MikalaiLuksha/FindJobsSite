@@ -49,4 +49,8 @@ public class Resume {
     @Fetch(value = FetchMode.SUBSELECT)
     private List<Language> foreignLanguages;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private Status status;
+
 }
