@@ -145,7 +145,7 @@ public class AdvertService {
 //        }
 //    }
 
-    public void updateAdvert (Advert advert, long id){
+    public void updateAdvert(Advert advert, long id) {
         Advert one = advertRepository.getOne(id);
         one.setProfession(advert.getProfession());
         one.setRequirements(advert.getRequirements());
@@ -155,7 +155,7 @@ public class AdvertService {
         advertRepository.save(one);
     }
 
-    public Advert updateStatus(Status status, long id){
+    public Advert updateStatus(Status status, long id) {
         Advert one = advertRepository.getOne(id);
         one.setStatus(status);
         advertRepository.save(one);

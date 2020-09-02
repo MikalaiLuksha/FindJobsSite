@@ -15,7 +15,6 @@ public interface AdvertRepository extends JpaRepository<Advert, Long> {
 
 
     List <Advert> findAllByEmployerId (long id);
-    Page<Advert> findAll (Pageable pageable);
 
     Page<Advert> findAll (Pageable pageable);
 

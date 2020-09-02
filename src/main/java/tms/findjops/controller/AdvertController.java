@@ -68,7 +68,7 @@ public class AdvertController {
     @RequestMapping(value = "/deleted/{id}", method = RequestMethod.POST)
     public String deletedP (@PathVariable(name = "id") long id){
        advertService.deleted(id);
-        return "/advert/youAdvert";
+        return "redirect:/advert/youAdvert";
     }
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)

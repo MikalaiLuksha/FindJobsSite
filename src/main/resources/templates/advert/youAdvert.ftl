@@ -12,9 +12,6 @@
             <li class="nav-item">
                 <a class="nav-link active" href="/">Home</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">###########</a>
-            </li>
         </ul>
     </nav>
 </head>
@@ -44,6 +41,11 @@
                 <div class="p-2 bd-highlight mb-0">
                     <form action="/advert/deleted/${advert.id}" method="post">
                         <button type="submit" class="btn btn-primary">Deleted</button>
+                    </form>
+                </div>
+                <div class="p-2 bd-highlight mb-0">
+                    <form action="/advert/update/${advert.id}" method="get">
+                        <button type="submit" class="btn btn-primary">Update advert</button>
                     </form>
                 </div>
             </div>
