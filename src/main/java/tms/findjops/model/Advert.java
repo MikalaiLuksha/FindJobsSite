@@ -40,4 +40,8 @@ public class Advert {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(value = TemporalType.TIMESTAMP)
     private Calendar addDate;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private Status status;
 }

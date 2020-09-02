@@ -57,8 +57,10 @@ public class AdvertController {
         Advert advertById = advertService.getAdvertById(id);
         model.addAttribute("advert", advertById);
         Employer currentEmployer = (Employer) httpSession.getAttribute("currentEmployer");
-        if (currentEmployer.getId()==advertById.getId()){
-            model.addAttribute("checkEmp", "yes");
+        if (currentEmployer!=null) {
+            if (currentEmployer.getId() == advertById.getId()) {
+                model.addAttribute("checkEmp", "yes");
+            }
         }
         return "/advert/advert";
     }

@@ -4,19 +4,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
-import tms.findjops.model.Profession;
+import tms.findjops.model.Status;
 
-import java.util.List;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 @Service
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SortDTO {
+public class StatusDTO {
 
-    private Profession profSort;
-
-    private String sortSalary;
-
-
+    @Enumerated(EnumType.STRING)
+    private Status status;
 }

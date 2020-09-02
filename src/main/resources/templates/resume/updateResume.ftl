@@ -114,8 +114,12 @@
                 <dt class="col-sm-2">Work experience</dt>
                 <dd class="col-sm-10">${resume.workExperience}</dd>
             <dt class="col-sm-12">
+                            <#list resume.placeOfWorks as wr>
                 <a href="/resume/updateExperience?id=${wr.id}&idr=${resume.id}" type="submit" class="btn btn-primary">Update work experience</a>
+            </#list>
+            </dt>
             </#if>
+
         </dl>
        </div>
 </div>

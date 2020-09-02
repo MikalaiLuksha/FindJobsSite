@@ -5,6 +5,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
         crossorigin="anonymous"></script>
+<#import "pager.ftl" as p>
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -59,7 +60,7 @@
                 <a class="nav-link" href="/administrator/resumeList">Resume list</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/advert/youAdvert">Advert list</a>
+                <a class="nav-link" href="/administrator/advertList">Advert list</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Response</a>
@@ -77,34 +78,14 @@
         <dt class="text-light"><h4>Sorting</h4></dt>
     </div>
     <div class="p-2 bd-highlight mb-0">
-        <div class="dropdown">
-            <button class="btn btn-light dropdown-toggle" type="button" id="profession1" data-toggle="dropdown">
-                Profession <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" style="width: 250px;">
-                <#list profs as prof>
-                    <li class="dropdown-input offset-sm-1"><label><input type="checkbox" name="profSort"
-                                                                         value="${prof.id}"> ${prof.name}</label></li>
-                </#list>
-            </ul>
-        </div>
+        <select class="form-control" name="profSort">
+            <#list profs as profession>
+                <option value="${profession.id}"> ${profession.name}</option>
+            </#list>
+        </select>
     </div>
     <div class="p-2 bd-highlight mb-0">
-        <div class="dropdown">
-            <button class="btn btn-light dropdown-toggle" type="button" id="salary1" data-toggle="dropdown">
-                Salary <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu">
-                <#assign periods = ["less 1000", "1000 - 1500", "1500 - 2000", "more 2000"]>
-                <#list periods as period>
-                    <li class="dropdown-input offset-sm-1"><label><input type="radio" name="salaryPeriod"
-                                                                         value="${period}"> ${period}</label></li>
-                </#list>
-            </ul>
-        </div>
-    </div>
-    <div class="p-2 bd-highlight mb-0">
-        <select class="form-control" name="salarySort">
+        <select class="form-control" name="sortSalary">
             <#assign sors = ["salary increase", "salary decrease", "no"]>
             <#list sors as sor>
                 <option value="${sor}"> ${sor}</option>
@@ -114,11 +95,13 @@
     <div class="p-2 bd-highlight mb-0">
             <button type="submit" class="btn btn-primary">Accept</button>
     </div>
+    <div class="p-2 bd-highlight mb-0">
+        <a href="/" type="submit" class="btn btn-primary">Cancel sort</a>
+    </div>
 </div>
 </form>
-
-<#if allAdvert??>
-    <#list allAdvert as advert>
+<#if page.content??>
+<#list page.content as advert>
         <div class="card w-75">
             <div class="card-body mb-0">
                 <h5 class="card-title">${advert.profession.name}</h5>
@@ -145,17 +128,7 @@
     </#list>
 </#if>
 <div class="fixed-bottom">
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">4</a></li>
-            <li class="page-item"><a class="page-link" href="#">5</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-        </ul>
-    </nav>
+    <@p.pager url page />
 </div>
 
 <style>
