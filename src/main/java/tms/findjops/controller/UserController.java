@@ -28,12 +28,12 @@ public class UserController {
     @RequestMapping(value = "/reg", method = RequestMethod.GET)
 
     public String regUserG(){
-        return "reg";
+        return "/reg";
     }
 
     @RequestMapping(value = "/auth", method = RequestMethod.GET)
     public String authUserG(){
-        return "auth";
+        return "/auth";
     }
 
     @RequestMapping(value = "/auth", method = RequestMethod.POST)

@@ -49,5 +49,10 @@ public class IndexController {
         return "/index";
     }
 
+    @RequestMapping(value = "error", method = RequestMethod.GET)
+    public String sortP() {
+        return "/index";
+    }
+
 
 }
