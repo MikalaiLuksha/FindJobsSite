@@ -10,17 +10,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import tms.findjops.model.Advert;
-import tms.findjops.model.Employer;
-import tms.findjops.model.Resume;
-import tms.findjops.model.Status;
+import tms.findjops.model.*;
 import tms.findjops.service.AdvertService;
+import tms.findjops.service.ApplicantService;
 import tms.findjops.service.DTO.SortAdvertListAdminDTO;
 import tms.findjops.service.DTO.SortResumeListAdminDTO;
 import tms.findjops.service.DTO.StatusDTO;
 import tms.findjops.service.ResumeService;
 
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Data
@@ -30,6 +27,7 @@ public class AdministratorController {
 
     private final ResumeService resumeService;
     private final AdvertService advertService;
+    private final ApplicantService applicantService;
 
     @RequestMapping(value = "/resumeList", method = RequestMethod.GET)
     public String resumeList(Model model){
@@ -81,5 +79,18 @@ public class AdministratorController {
         model.addAttribute("checkEmp", "yes");
         model.addAttribute("status", Status.values());
         return "/administrator/advert";
+    }
+
+    @RequestMapping(value = "/applicantList", method = RequestMethod.GET)
+    public String applicantListG (Model model, @PageableDefault(sort = {"id"}, direction = Sort.Direction.ASC) Pageable pageable){
+        Page<Applicant> page = applicantService.getAllApplPage(pageable);
+        model.addAttribute("page", page);
+        model.addAttribute("url", "/");
+        return "/administrator/applicantList";
+    }
+
+    @RequestMapping(value = "/employerList", method = RequestMethod.GET)
+    public String employerListG (){
+        return "/administrator/employerList";
     }
 }

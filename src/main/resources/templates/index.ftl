@@ -54,7 +54,10 @@
             </li>
         <#elseif checkRegAd??>
             <li class="nav-item">
-                <a class="nav-link" href="/user/applicant/account">User list</a>
+                <a class="nav-link" href="/administrator/applicantList">Applicant list</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/administrator/employerList">Employer list</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/administrator/resumeList">Resume list</a>

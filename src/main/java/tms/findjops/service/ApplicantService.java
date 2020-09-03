@@ -3,6 +3,8 @@ package tms.findjops.service;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import tms.findjops.model.*;
 import tms.findjops.repository.*;
@@ -62,6 +64,10 @@ public class ApplicantService {
         applicant1.setTelephone(applicant.getTelephone());
         applicantRepository.save(applicant1);
         return applicant1;
+    }
+
+    public Page<Applicant> getAllApplPage(Pageable pageable){
+       return applicantRepository.findAll(pageable);
     }
 
 }

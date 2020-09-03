@@ -54,6 +54,7 @@
                 <div class="p-2 bd-highlight mb-0">
                 <button type="submit" class="btn btn-primary">Accept</button>
                 </div>
+            </div>
         </form>
     </div>
 </div>
